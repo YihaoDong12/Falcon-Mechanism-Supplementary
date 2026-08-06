@@ -1,0 +1,12 @@
+
+  vinext dev  (Vite 8.0.13)
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3001[22m/[39m
+  [32m➜[39m  [1mDebug[22m:   [2m[33mhttp://localhost:[1m3001[22m[2m/__debug[39m[22m
+ GET / 200 in 1.4s (compile: 1785999897.3s, render: 1.3s)
+[2m11:05:18[22m [36m[1m[vite][22m[39m [34m[2m(rsc)[22m[39m [32mhmr update [39m[2m/app/globals.css[22m
+ GET / 200 in 244ms (compile: 1785999897.4s, render: 56ms)
+[2m11:05:41[22m [36m[1m[vite][22m[39m [34m[2m(rsc)[22m[39m [32mhmr update [39m[2m/app/globals.css[22m
+[2m11:05:41[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/app/globals.css?direct[22m
+ GET / 200 in 156ms (compile: 1785999897.3s, render: 41ms)
+ GET / 200 in 75ms (compile: 1785999897.3s, render: 46ms)
