@@ -27,10 +27,10 @@ function useCsv(path: string) {
 
 function AnimatedCurve({ mode }: { mode: "trajectory" | "convergence" | "parameters" | "partition" }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const convergence = useCsv("/data/convergence.csv");
-  const periodic = useCsv("/data/periodic-curves.csv");
-  const splits = useCsv("/data/split-history.csv");
-  const targets = useCsv("/data/target-curves.csv");
+  const convergence = useCsv("data/convergence.csv");
+  const periodic = useCsv("data/periodic-curves.csv");
+  const splits = useCsv("data/split-history.csv");
+  const targets = useCsv("data/target-curves.csv");
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -146,7 +146,7 @@ export default function Home() {
         <nav aria-label="Primary navigation">
           {sections.map(([n, en]) => <a key={n} href={`#s${n}`}><small>{n}</small>{en}</a>)}
         </nav>
-        <a className="paper-link" href="/media/manuscript.pdf" target="_blank">Paper ↗</a>
+        <a className="paper-link" href="media/manuscript.pdf" target="_blank">Paper ↗</a>
       </header>
 
       <section className="hero" id="top">
@@ -158,7 +158,7 @@ export default function Home() {
           <div className="authors">Yihao Dong · Vladimir Parezanovic · Yusra Abdulrahman<br/><span>Khalifa University · Aerospace Engineering</span></div>
         </div>
         <div className="hero-media">
-          <video src="/media/web/flight-side.mp4" poster="/media/web/flight-side.jpg" autoPlay muted loop playsInline />
+          <video src="media/web/flight-side.mp4" poster="media/web/flight-side.jpg" autoPlay muted loop playsInline />
           <div className="hero-tag"><span>01 / FIELD RECORDING</span><b>Side view</b></div>
         </div>
         <a href="#s01" className="scroll-cue">SCROLL TO EXPLORE <span>↓</span></a>
@@ -171,8 +171,8 @@ export default function Home() {
       <section className="chapter" id="s01">
         <div className="section-head"><p>01 — OBSERVATION</p><h2>Flight, seen twice.</h2><span>猎隼飞行原始记录</span></div>
         <div className="split-media">
-          <MediaCard kicker="CAMERA A · FRONT" title="Frontal flight sequence" src="/media/web/flight-front.mp4" poster="/media/web/flight-front.jpg" />
-          <MediaCard kicker="CAMERA B · SIDE" title="Lateral flight sequence" src="/media/web/flight-side.mp4" poster="/media/web/flight-side.jpg" />
+          <MediaCard kicker="CAMERA A · FRONT" title="Frontal flight sequence" src="media/web/flight-front.mp4" poster="media/web/flight-front.jpg" />
+          <MediaCard kicker="CAMERA B · SIDE" title="Lateral flight sequence" src="media/web/flight-side.mp4" poster="media/web/flight-side.jpg" />
         </div>
         <p className="chapter-note">Synchronized camera views establish the spatial evidence base. The paired recordings expose sweep, extension, and distal-wing motion that cannot be recovered from one projection alone.</p>
       </section>
@@ -184,7 +184,7 @@ export default function Home() {
           <button className={view === "side" ? "active" : ""} onClick={() => setView("side")}>Side view</button>
         </div>
         <div className="dlc-stage">
-          <video key={view} src={view === "front" ? "/media/web/dlc-front.mp4" : "/media/web/dlc-side.mp4"} poster={view === "front" ? "/media/web/dlc-front.jpg" : "/media/web/dlc-side.jpg"} autoPlay muted loop playsInline />
+          <video key={view} src={view === "front" ? "media/web/dlc-front.mp4" : "media/web/dlc-side.mp4"} poster={view === "front" ? "media/web/dlc-front.jpg" : "media/web/dlc-side.jpg"} autoPlay muted loop playsInline />
           <div className="stage-index">DLC / {view === "front" ? "A" : "B"}</div>
         </div>
         <div className="curve-grid">
@@ -195,7 +195,7 @@ export default function Home() {
 
       <section className="chapter" id="s03">
         <div className="section-head"><p>03 — ANALYTICAL MODEL</p><h2>One drive.<br/>Five coordinated motions.</h2><span>机构组成与多视角运动</span></div>
-        <figure className="publication-figure"><figcaption><b>FIGURE 01</b><span>Analytical mechanism definition · unified source figure</span></figcaption><img className="wide-figure" src="/media/mechanism.png" alt="Falcon-inspired mechanism composition and kinematic views" /></figure>
+        <figure className="publication-figure"><figcaption><b>FIGURE 01</b><span>Analytical mechanism definition · unified source figure</span></figcaption><img className="wide-figure" src="media/mechanism.png" alt="Falcon-inspired mechanism composition and kinematic views" /></figure>
         <div className="mechanism-notes">
           <div><b>I</b><h3>Root drive</h3><p>Periodic shoulder-root input initiates the closed-loop transmission.</p></div>
           <div><b>II–VI</b><h3>Linked closure</h3><p>Sequential planar loops coordinate the elbow and wrist assemblies.</p></div>
@@ -205,7 +205,7 @@ export default function Home() {
 
       <section className="chapter optimization" id="s04">
         <div className="section-head"><p>04 — SEARCH PROCESS</p><h2>The design space,<br/>made visible.</h2><span>目标函数、自变量与分区演化</span></div>
-        <img className="framework" src="/media/optimization-framework.png" alt="Sensitivity-partitioned CMA-ES and SLSQP optimization framework" />
+        <img className="framework" src="media/optimization-framework.png" alt="Sensitivity-partitioned CMA-ES and SLSQP optimization framework" />
         <div className="animation-grid">
           <MediaCard kicker="OBJECTIVE" title="Best score over candidate evaluations"><AnimatedCurve mode="convergence" /></MediaCard>
           <MediaCard kicker="DESIGN VARIABLES" title="Periodic parameters over wingbeat phase"><AnimatedCurve mode="parameters" /></MediaCard>
@@ -217,10 +217,10 @@ export default function Home() {
       <section className="chapter result" id="s05">
         <div className="section-head light"><p>05 — SYNTHESIZED MOTION</p><h2>The mechanism<br/>in motion.</h2><span>优化机构与目标轨迹对比</span></div>
         <div className="result-stage">
-          <video src="/media/web/optimized-mechanism.mp4" poster="/media/web/optimized-mechanism.jpg" autoPlay muted loop playsInline controls />
+          <video src="media/web/optimized-mechanism.mp4" poster="media/web/optimized-mechanism.jpg" autoPlay muted loop playsInline controls />
           <div className="result-caption"><span>FOUR SYNCHRONIZED VIEWS</span><h3>Generated wrist and wingtip trajectories versus biological targets</h3><p>Move through one full input cycle to inspect mechanism closure, phase correspondence, and spatial curve agreement.</p></div>
         </div>
-        <div className="phase-band"><img src="/media/phase-contract.png" alt="Strict initialized phase correspondence between target and model"/><div><span>STRICT PHASE CONTRACT</span><h3>Same index. Same physical moment.</h3><p>Cyclic shifts and reversed traversals are explicitly rejected. The comparison preserves the measured ordering of the wingbeat.</p></div></div>
+        <div className="phase-band"><img src="media/phase-contract.png" alt="Strict initialized phase correspondence between target and model"/><div><span>STRICT PHASE CONTRACT</span><h3>Same index. Same physical moment.</h3><p>Cyclic shifts and reversed traversals are explicitly rejected. The comparison preserves the measured ordering of the wingbeat.</p></div></div>
       </section>
 
       <section className="chapter paper" id="s06">
@@ -229,8 +229,8 @@ export default function Home() {
           <div><span>ABSTRACT</span><p>Compact flapping mechanisms cannot readily reproduce the synchronized three-dimensional motion of an avian wrist and wingtip because both trajectories must emerge from one periodically driven, closed-loop transmission. Here we establish a falcon-inspired synthesis framework that links markerless flight reconstruction to a three-joint, five-degree-of-freedom analytical mechanism. DeepLabCut observations are corrected for confidence and anatomical length, anchored by a unique measured wrist event, and resampled with one coupled six-dimensional arc-length coordinate. Fifty-four independent variables describe the mechanism and common target pose, while sensitivity-guided partitioning, CMA-ES, and SLSQP provide a reproducible synthesis workflow.</p></div>
           <ol>{["Introduction", "Problem formulation & framework", "Biological trajectory preprocessing", "Sensitivity-guided optimization", "Results", "Conclusions", "Mechanism reconstruction", "Optimization domain"].map((x, i) => <li key={x}><b>{String(i + 1).padStart(2, "0")}</b>{x}</li>)}</ol>
         </div>
-        <div className="paper-actions"><button onClick={() => setPaperOpen(!paperOpen)}>{paperOpen ? "Close embedded paper" : "Open paper in this window"}</button><a href="/media/manuscript.pdf" download>Download PDF ↓</a></div>
-        {paperOpen && <iframe className="pdf-frame" src="/media/manuscript.pdf" title="Complete research paper" />}
+        <div className="paper-actions"><button onClick={() => setPaperOpen(!paperOpen)}>{paperOpen ? "Close embedded paper" : "Open paper in this window"}</button><a href="media/manuscript.pdf" download>Download PDF ↓</a></div>
+        {paperOpen && <iframe className="pdf-frame" src="media/manuscript.pdf" title="Complete research paper" />}
       </section>
 
       <footer><div className="brand"><span>FW</span><b>FALCON / SYNTHESIS</b></div><p>Supplementary materials archive · Khalifa University · 2026</p><a href="#top">BACK TO TOP ↑</a></footer>

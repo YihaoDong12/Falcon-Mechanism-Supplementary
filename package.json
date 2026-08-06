@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
+    "build:pages": "next build",
     "start": "vinext start",
     "media": "node scripts/process-media.mjs",
     "og": "powershell -ExecutionPolicy Bypass -File scripts/build-og.ps1",
