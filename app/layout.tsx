@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geist = Geist({ variable: "--font-sans", subsets: ["latin"] });
-const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"] });
 
 const title = "Three-Joint, Five-DOF Falcon-Inspired Flapping Mechanism · Supplementary Materials";
 const description = "Flight reconstruction, phase-locked mechanism motion, strict cold-start CMA-ES + SQP optimization evidence, paper, code, and source data.";
@@ -18,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${geist.variable} ${mono.variable}`}>{children}</body></html>;
+  return <html lang="en"><body className="nature-type">{children}</body></html>;
 }

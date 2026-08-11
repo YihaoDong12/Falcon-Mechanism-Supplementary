@@ -51,9 +51,9 @@ function AnimatedCurve({ mode }: { mode: "trajectory" | "convergence" | "paramet
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const w = rect.width, h = rect.height;
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = "#f3f1ea";
+      ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, w, h);
-      ctx.strokeStyle = "rgba(19,32,37,.1)";
+      ctx.strokeStyle = "rgba(31,41,51,.1)";
       ctx.lineWidth = 1;
       for (let i = 1; i < 6; i++) {
         ctx.beginPath(); ctx.moveTo(42, (h - 45) * i / 6 + 8); ctx.lineTo(w - 18, (h - 45) * i / 6 + 8); ctx.stroke();
@@ -91,17 +91,17 @@ function AnimatedCurve({ mode }: { mode: "trajectory" | "convergence" | "paramet
           }
           ctx.stroke();
         };
-        drawLoop(true, "#e45f4c"); drawLoop(false, "#087f8c");
-        ctx.fillStyle = "#132025"; ctx.font = "600 12px ui-monospace"; ctx.fillText(`PHASE  ${(progress * 360).toFixed(0).padStart(3, "0")}°`, 18, 24);
+        drawLoop(true, "#E64B35"); drawLoop(false, "#3C5488");
+        ctx.fillStyle = "#1F2933"; ctx.font = "600 14px Arial"; ctx.fillText(`PHASE  ${(progress * 360).toFixed(0).padStart(3, "0")}°`, 18, 24);
       } else if (mode === "convergence") {
         const values = convergence.filter((r) => r.phase === "primary").map((r) => Number(r.score));
-        plot(values.length ? values : [610, 420, 270, 180, 130, 105, 92, 84, 81], "#087f8c", 3);
-        ctx.fillStyle = "#132025"; ctx.font = "600 12px ui-monospace"; ctx.fillText("BEST OBJECTIVE · EVALUATIONS →", 18, 24);
+        plot(values.length ? values : [610, 420, 270, 180, 130, 105, 92, 84, 81], "#3C5488", 3);
+        ctx.fillStyle = "#1F2933"; ctx.font = "600 14px Arial"; ctx.fillText("BEST OBJECTIVE · EVALUATIONS →", 18, 24);
       } else if (mode === "parameters") {
         const keys = ["L3_mm", "L8_mm", "L32_mm", "B_y_mm"];
-        const colors = ["#087f8c", "#e45f4c", "#d7a733", "#31566a"];
+        const colors = ["#3C5488", "#E64B35", "#00A087", "#4DBBD5"];
         keys.forEach((key, i) => plot(periodic.map((r) => Number(r[key])), colors[i], 2.4, progress));
-        ctx.fillStyle = "#132025"; ctx.font = "600 12px ui-monospace"; ctx.fillText("PERIODIC DESIGN VARIABLES · PHASE →", 18, 24);
+        ctx.fillStyle = "#1F2933"; ctx.font = "600 14px Arial"; ctx.fillText("PERIODIC DESIGN VARIABLES · PHASE →", 18, 24);
       } else {
         const rounds = splits.map((r) => Number(r.round)).filter(Number.isFinite);
         const maxRound = Math.max(1, ...rounds);
@@ -110,10 +110,10 @@ function AnimatedCurve({ mode }: { mode: "trajectory" | "convergence" | "paramet
         const max = Math.max(...bars);
         bars.slice(0, shown).forEach((v, i) => {
           const bw = (w - 65) / bars.length;
-          ctx.fillStyle = i === shown - 1 ? "#e45f4c" : "#087f8c";
+          ctx.fillStyle = i === shown - 1 ? "#E64B35" : "#3C5488";
           ctx.fillRect(42 + i * bw, h - 28 - (h - 60) * v / max, Math.max(2, bw - 2), (h - 60) * v / max);
         });
-        ctx.fillStyle = "#132025"; ctx.font = "600 12px ui-monospace"; ctx.fillText(`SENSITIVITY PARTITIONS · ROUND ${shown - 1}`, 18, 24);
+        ctx.fillStyle = "#1F2933"; ctx.font = "600 14px Arial"; ctx.fillText(`SENSITIVITY PARTITIONS · ROUND ${shown - 1}`, 18, 24);
       }
       raf = requestAnimationFrame(draw);
     };
@@ -137,7 +137,7 @@ function MediaCard({ title, kicker, src, poster, children }: { title: string; ki
 }
 
 function EvidenceFigure({ src, label, caption }: { src: string; label: string; caption: string }) {
-  return <figure className="evidence-figure"><img src={src} alt={caption} /><figcaption><b>{label}</b><span>{caption}</span></figcaption></figure>;
+  return <figure className="evidence-figure"><div className="figure-media"><img src={src} alt={caption} /></div><figcaption><b>{label}</b><span>{caption}</span></figcaption></figure>;
 }
 
 function DownloadItem({ href, label, title, meta }: { href: string; label: string; title: string; meta: string }) {
@@ -163,7 +163,7 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow">SUPPLEMENTARY MATERIALS · JCDE · UPDATED 11 AUG 2026</p>
           <h1>Trajectory Synthesis of a<br/><em>Falcon-Inspired</em><br/>Flapping Mechanism</h1>
-          <p className="dek">Markerless flight reconstruction, a three-joint five-DOF analytical mechanism, and a strict cold-start sensitivity-partitioned CMA-ES + SQP synthesis record.</p>
+          <p className="dek">Supplementary record for markerless flight reconstruction, the analytical three-joint five-DOF mechanism, and the verified strict cold-start CMA-ES + SQP result.</p>
           <div className="authors">Yihao Dong · Vladimir Parezanovic · Yusra Abdulrahman<br/><span>Khalifa University · Aerospace Engineering</span></div>
         </div>
         <div className="hero-media">
@@ -178,7 +178,7 @@ export default function Home() {
       </section>
 
       <section className="chapter" id="s01">
-        <div className="section-head"><p>01 — OBSERVATION</p><h2>Flight, seen twice.</h2><span>猎隼飞行原始记录</span></div>
+        <div className="section-head"><p>01 — OBSERVATION</p><h2>Source flight recordings</h2><span>猎隼飞行原始记录</span></div>
         <div className="split-media">
           <MediaCard kicker="CAMERA A · REAR" title="Rear take-off sequence" src="media/web/flight-rear.mp4" poster="media/web/flight-rear.jpg" />
           <MediaCard kicker="CAMERA B · SIDE · 120 FPS SOURCE" title="High-speed lateral flight sequence" src="media/web/flight-side.mp4" poster="media/web/flight-side.jpg" />
@@ -187,7 +187,7 @@ export default function Home() {
       </section>
 
       <section className="chapter ink" id="s02">
-        <div className="section-head light"><p>02 — RECONSTRUCTION</p><h2>Pixels become a<br/>coupled trajectory.</h2><span>DeepLabCut 标定与三维轨迹</span></div>
+        <div className="section-head light"><p>02 — RECONSTRUCTION</p><h2>Markerless trajectory reconstruction</h2><span>DeepLabCut 标定与三维轨迹</span></div>
         <div className="view-switch" role="group" aria-label="Select camera view">
           <button className={view === "front" ? "active" : ""} onClick={() => setView("front")}>Front view</button>
           <button className={view === "side" ? "active" : ""} onClick={() => setView("side")}>Side view</button>
@@ -197,17 +197,21 @@ export default function Home() {
           <div className="stage-index">DLC / {view === "front" ? "A" : "B"}</div>
         </div>
         <div className="curve-grid">
-          <div className="curve-copy"><span>LIVE RECONSTRUCTION</span><h3>Wingbeat phase draws the wrist and wingtip curves.</h3><p>The two trajectories share one coupled six-dimensional arc-length coordinate, preserving physical simultaneity through the wingbeat.</p></div>
+          <div className="curve-copy"><span>COUPLED PHASE COORDINATE</span><h3>Wrist and wingtip trajectories are reconstructed at the same wingbeat phase.</h3><p>A shared six-dimensional arc-length coordinate preserves the simultaneity of the paired biological observations.</p></div>
           <AnimatedCurve mode="trajectory" />
         </div>
         <EvidenceFigure src="media/dlc-analysis.png" label="FIGURE 02" caption="DeepLabCut extraction, confidence handling, and cross-view reconstruction evidence" />
       </section>
 
       <section className="chapter" id="s03">
-        <div className="section-head"><p>03 — ANALYTICAL MODEL</p><h2>One drive.<br/>Five coordinated motions.</h2><span>机构组成与多视角运动</span></div>
+        <div className="section-head"><p>03 — ANALYTICAL MODEL</p><h2>Analytical mechanism and kinematics</h2><span>机构组成与多视角运动</span></div>
         <div className="figure-stack">
           <EvidenceFigure src="media/design-logic.png" label="DESIGN LOGIC" caption="Actuation authority, paired spatial compatibility, and feasibility-aware multiscale search" />
           <EvidenceFigure src="media/mechanism.png" label="MECHANISM" caption="Three-joint, five-DOF analytical topology and sequential closed-loop construction" />
+        </div>
+        <div className="mechanism-film">
+          <video src="media/web/optimized-mechanism.mp4" poster="media/web/optimized-mechanism.jpg" autoPlay muted loop playsInline controls preload="metadata" />
+          <div><span>MECHANISM MOTION · PHASE LOCKED</span><h3>Full-cycle analytical mechanism motion</h3><p>The orbit view reports the closed mechanism, endpoint trajectories, periodic L3 and L8 inputs, and Point-B motion over one coupled phase cycle.</p></div>
         </div>
         <div className="mechanism-notes">
           <div><b>I</b><h3>Root drive</h3><p>Periodic shoulder-root input initiates the closed-loop transmission.</p></div>
@@ -217,11 +221,11 @@ export default function Home() {
       </section>
 
       <section className="chapter optimization" id="s04">
-        <div className="section-head"><p>04 — SEARCH PROCESS</p><h2>The design space,<br/>made visible.</h2><span>目标函数、自变量与分区演化</span></div>
-        <img className="framework" src="media/optimization-framework.png" alt="Sensitivity-partitioned CMA-ES and SQP optimization framework" />
+        <div className="section-head"><p>04 — SEARCH PROCESS</p><h2>Optimization history and convergence</h2><span>目标函数、自变量与分区演化</span></div>
+        <div className="figure-media framework-frame"><img src="media/optimization-framework.png" alt="Sensitivity-partitioned CMA-ES and SQP optimization framework" /></div>
         <div className="optimization-film">
           <video src="media/web/optimization-convergence.mp4" poster="media/web/optimization-convergence.jpg" autoPlay muted loop playsInline controls preload="metadata" />
-          <div><span>60-SECOND ITERATION RECORD</span><h3>PCA exploration and CMA-ES convergence evolve with the formal incumbent.</h3><p>The animation separates the tested population from accepted improvements and preserves fixed PCA axes so movement through the 54-dimensional search can be read consistently over time.</p></div>
+          <div><span>60-SECOND ITERATION RECORD</span><h3>PCA exploration and CMA-ES convergence</h3><p>The animation separates tested candidates from accepted improvements and uses fixed PCA axes throughout the 54-dimensional search record.</p></div>
         </div>
         <div className="optimization-stats">
           <div><b>6,507</b><span>CMA-ES generations</span></div><div><b>639</b><span>Split decisions</span></div><div><b>340</b><span>Executed partitions</span></div><div><b>51 / 51</b><span>Accepted SQP calls</span></div>
@@ -235,7 +239,7 @@ export default function Home() {
       </section>
 
       <section className="chapter result" id="s05">
-        <div className="section-head light"><p>05 — SYNTHESIZED MOTION</p><h2>The mechanism<br/>in motion.</h2><span>优化机构与目标轨迹对比</span></div>
+        <div className="section-head light"><p>05 — SYNTHESIZED MOTION</p><h2>Verified event-level kinematics</h2><span>优化机构与目标轨迹对比</span></div>
         <div className="result-stage">
           <video src="media/web/optimized-mechanism.mp4" poster="media/web/optimized-mechanism.jpg" autoPlay muted loop playsInline controls preload="metadata" />
           <div className="result-caption"><span>PHASE-LOCKED KINEMATICS</span><h3>Generated wrist and wingtip trajectories versus biological targets</h3><p>The 60-second orbit follows one complete phase cycle while reporting absolute X–Z correspondence, periodic L3 and L8 lengths, and the Point-B path.</p><dl><div><dt>Tip RMSE</dt><dd>45.43 mm</dd></div><div><dt>Wrist RMSE</dt><dd>45.56 mm</dd></div><div><dt>Replay error</dt><dd>≤ 6.82 × 10⁻¹³</dd></div></dl></div>
@@ -247,7 +251,7 @@ export default function Home() {
       </section>
 
       <section className="chapter paper" id="s06">
-        <div className="section-head"><p>06 — ARTICLE</p><h2>Read the complete paper.</h2><span>全文、摘要与章节</span></div>
+        <div className="section-head"><p>06 — ARTICLE</p><h2>Manuscript and appendices</h2><span>全文、摘要与章节</span></div>
         <div className="abstract-grid">
           <div><span>ABSTRACT · UPDATED MANUSCRIPT</span><p>Compact flapping mechanisms must transform a small set of periodic actuator motions into synchronized three-dimensional wrist and wingtip trajectories. Here we connect markerless flight reconstruction to the inverse synthesis of a three-joint, five-degree-of-freedom falcon-inspired mechanism. Sensitivity-selected periodic translations complement the rotary drive; paired trajectories are evaluated by equally weighted same-phase absolute-distance RMSE terms; and sensitivity-guided partitioning, regional CMA-ES, and SQP recover and refine feasible basins. A strict cold-start run recovered a full-cycle feasible design, and independent replay confirmed event-level metric reproducibility.</p></div>
           <ol>{["Introduction", "Problem formulation & research framework", "Biological trajectory preprocessing", "Biologically inspired hybrid optimization", "Results", "Conclusions & outlook", "Replication of results", "Appendices: model & optimization domain"].map((x, i) => <li key={x}><b>{String(i + 1).padStart(2, "0")}</b>{x}</li>)}</ol>
@@ -257,7 +261,7 @@ export default function Home() {
       </section>
 
       <section className="chapter reproducibility" id="s07">
-        <div className="section-head"><p>07 — REPRODUCIBILITY</p><h2>Inspect the evidence.<br/>Replay the result.</h2><span>代码、原始数据与验证记录</span></div>
+        <div className="section-head"><p>07 — REPRODUCIBILITY</p><h2>Code and data availability</h2><span>代码、原始数据与验证记录</span></div>
         <div className="repro-intro"><p>The archive below is tied to the verified strict-phase event at evaluation 1,074,004. It includes the analytical model, frozen target contract, final variables, trajectory replay, CMA-ES history, partition decisions, and accepted SQP calls.</p><a href="https://github.com/YihaoDong12/Falcon-Mechanism-Supplementary/tree/main/public/reproducibility" target="_blank">Browse all files on GitHub ↗</a></div>
         <div className="download-grid">
           <DownloadItem href="reproducibility/model/fourbar3d_python.py" label="PYTHON · MODEL" title="Analytical closed-loop mechanism" meta="Three-dimensional sequential mechanism solver" />

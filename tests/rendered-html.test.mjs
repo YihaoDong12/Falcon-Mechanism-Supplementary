@@ -35,6 +35,8 @@ test("server-renders the complete supplementary archive", async () => {
   assert.match(html, /UPDATED 11 AUG 2026/);
   assert.match(html, /media\/web\/optimization-convergence\.mp4/);
   assert.match(html, /media\/web\/optimized-mechanism\.mp4/);
+  assert.equal((html.match(/media\/web\/optimized-mechanism\.mp4/g) ?? []).length, 2);
+  assert.match(html, /Full-cycle analytical mechanism motion/);
   assert.match(html, /Tip RMSE · mm/);
   assert.match(html, /45\.56/);
   assert.match(html, /07 — REPRODUCIBILITY/);
