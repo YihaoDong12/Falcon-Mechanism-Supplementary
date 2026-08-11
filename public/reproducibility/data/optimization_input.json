@@ -1,0 +1,796 @@
+{
+  "document": {
+    "name": "Fourbar initialized equal-arc strict-phase optimization input contract",
+    "name_zh": "四连杆机构初始化等弧长严格相位优化输入合同",
+    "version": "2.0.0",
+    "status": "model_and_solver_modified_self_checked_not_optimized",
+    "date": "2026-08-05",
+    "purpose": "作为下一次优化的唯一模型、目标、设计域、目标函数、卡顿约束、求解器和报告输入。",
+    "result_notice": "本文件不包含新优化结果，本轮未启动优化分析计算。"
+  },
+  "semantic_change": {
+    "previous": "每个生成点可投影到闭合目标折线上的任意最近点，且不保留严格相位对应。",
+    "current": "由 Excel 固定唯一相位零点，Tip/Wrist 使用一个同步六维闭合弧长相位，等分后仅同索引比较。",
+    "forbidden_in_objective": [
+      "最近目标点",
+      "最近目标线段",
+      "循环移位",
+      "方向反转",
+      "候选相关相位重对齐",
+      "多个生成点集中匹配少数目标位置"
+    ]
+  },
+  "target": {
+    "authoritative_workbook": "Length_normalized_target_documentation_with_initialization.xlsx",
+    "authoritative_workbook_sha256": "F0E73E3E5A17CDB9D71D27C4B703CEA93C209814F3288B0EF5A758E71B6D045E",
+    "derived_target_csv": "Length_normalized_target_initialized_equal_arc_76_mm.csv",
+    "derived_target_csv_sha256": "15F5C3D71BB92DDEFC4CCD316C3DC940165A51AC8176D251C391D68A62D613DD",
+    "derived_target_metadata": "Length_normalized_target_initialized_equal_arc_76_metadata.json",
+    "derived_target_metadata_sha256": "E4FC6FC58A096A446AC658DB577182050BA2158575C67F79A516FA74DD8E97E0",
+    "sample_count": 76,
+    "units": "mm",
+    "coordinate_convention": {
+      "x": "翼展方向 -x",
+      "y": "头方向 +y",
+      "z": "背向上 +z"
+    },
+    "initialization": {
+      "event": "Wrist 由 z<0 向背侧上穿 z=0 平面",
+      "original_phase": 0.9850313957755277,
+      "model_phase": 0.0,
+      "phase_offset": 0.9850313957755277,
+      "wrist_mm": [
+        -209.0097303298715,
+        87.56669544590049,
+        -9.592326932761353e-14
+      ],
+      "tip_mm": [
+        -344.13604649057294,
+        -218.74906784487607,
+        -329.7780128346469
+      ],
+      "wrist_dz_dphase_mm_per_cycle": 1231.9005582526313,
+      "direction": "向背侧上穿"
+    },
+    "phase_definition": {
+      "paired_state": "q(phi)=[Tip_x,Tip_y,Tip_z,Wrist_x,Wrist_y,Wrist_z]",
+      "segment_increment": "ds_j=norm_2(q_{j+1}-q_j), including periodic closure",
+      "equal_phase": "lambda_k=k/76, k=0,...,75, interpolated on cumulative coupled 6D arc length",
+      "same_time_pairing_preserved": true,
+      "tip_wrist_resampled_independently": false
+    }
+  },
+  "rmse": {
+    "correspondence_mode": "strict_initialized_equal_arc_index",
+    "tip_residual": "e_tip,k=Tip_generated(lambda_k)-Tip_target(lambda_k)",
+    "wrist_residual": "e_wrist,k=Wrist_generated(lambda_k)-Wrist_target(lambda_k)",
+    "tip_rmse_mm": "sqrt(mean_k(norm_2(e_tip,k)^2))",
+    "wrist_rmse_mm": "sqrt(mean_k(norm_2(e_wrist,k)^2))",
+    "combined_rmse_mm": "sqrt(mean(concat(norm(e_tip)^2,norm(e_wrist)^2)))",
+    "search_bottleneck": "p64 smooth maximum of Tip and Wrist RMSE"
+  },
+  "stutter_detection": {
+    "input": "raw 76 equal-time mechanism frames before equal-arc resampling",
+    "reason": "等弧长重采样只能规范几何对应，不能掩盖真实时间运动中的卡顿。",
+    "metrics": [
+      "minimum_speed_ratio",
+      "speed_cv",
+      "stall_fraction",
+      "adjacent_speed_log_rms",
+      "maximum_adjacent_speed_ratio",
+      "acceleration_rms_normalized",
+      "jerk_rms_normalized",
+      "jerk_peak_normalized",
+      "stutter_index"
+    ],
+    "hard_limits": {
+      "minimum_speed_over_median": 0.002,
+      "maximum_adjacent_speed_ratio": 10.0,
+      "conditional_normalized_jerk_peak": 6.0,
+      "conditional_jerk_speed_ratio_gate": 3.0
+    },
+    "continuous_penalty": "2.0 mm * max(Tip stutter index, Wrist stutter index)"
+  },
+  "mechanism": {
+    "frames": 76,
+    "wrist_node": "L",
+    "tip_node": "U",
+    "input_node": "B",
+    "origin": "A=[0,0,0]",
+    "merged_nodes": "C=Z in every frame",
+    "periodic_lengths": [
+      "L3(phi) third order",
+      "L8(phi) third order"
+    ],
+    "cycle_fixed_optimized_lengths": [
+      "L2",
+      "L31",
+      "L5",
+      "L6",
+      "L7"
+    ],
+    "derived_length": "L32(phi)=L3(phi)-L31+2 mm",
+    "b_input": {
+      "Bx": "constant B_CenterX",
+      "By": "second-order Fourier",
+      "Bz": "third-order Fourier with phase canonicalization",
+      "derived_coordinate": "B_Z_C3c=-(B_Z_C0+B_Z_C1c+B_Z_C2c) so that Bz(0)=0"
+    },
+    "target_pose": "one shared Tx/Ty/Tz/Rx/Ry/Rz; scale fixed at 1"
+  },
+  "design_space": {
+    "stored_coordinate_count": 55,
+    "independent_search_dimension": 54,
+    "inner_solved_variables": [],
+    "derived_stored_coordinates": [
+      "B_Z_C3c"
+    ],
+    "variables": [
+      {
+        "stored_index": 1,
+        "name": "L2",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 69.0,
+        "lower": 10.0,
+        "upper": 350.0
+      },
+      {
+        "stored_index": 2,
+        "name": "L31",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 42.0,
+        "lower": 10.0,
+        "upper": 150.0
+      },
+      {
+        "stored_index": 3,
+        "name": "L4",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 41.0,
+        "lower": 10.0,
+        "upper": 100.0
+      },
+      {
+        "stored_index": 4,
+        "name": "L41",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 23.0,
+        "lower": 5.0,
+        "upper": 50.0
+      },
+      {
+        "stored_index": 5,
+        "name": "L5",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 165.0,
+        "lower": 100.0,
+        "upper": 340.0
+      },
+      {
+        "stored_index": 6,
+        "name": "L51",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 32.0,
+        "lower": 10.0,
+        "upper": 50.0
+      },
+      {
+        "stored_index": 7,
+        "name": "L52",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 32.0,
+        "lower": 10.0,
+        "upper": 50.0
+      },
+      {
+        "stored_index": 8,
+        "name": "L6",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 257.0,
+        "lower": 200.0,
+        "upper": 300.0
+      },
+      {
+        "stored_index": 9,
+        "name": "L7",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 255.0,
+        "lower": 200.0,
+        "upper": 300.0
+      },
+      {
+        "stored_index": 10,
+        "name": "L9",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 32.0,
+        "lower": 10.0,
+        "upper": 100.0
+      },
+      {
+        "stored_index": 11,
+        "name": "L10",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 30.0,
+        "lower": 10.0,
+        "upper": 50.0
+      },
+      {
+        "stored_index": 12,
+        "name": "L11",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 15.0,
+        "lower": 10.0,
+        "upper": 100.0
+      },
+      {
+        "stored_index": 13,
+        "name": "L12",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 15.0,
+        "lower": 5.0,
+        "upper": 50.0
+      },
+      {
+        "stored_index": 14,
+        "name": "L13",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 15.0,
+        "lower": 8.0,
+        "upper": 100.0
+      },
+      {
+        "stored_index": 15,
+        "name": "LRod",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 50.0,
+        "lower": 10.0,
+        "upper": 150.0
+      },
+      {
+        "stored_index": 16,
+        "name": "L14",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 15.0,
+        "lower": 10.0,
+        "upper": 50.0
+      },
+      {
+        "stored_index": 17,
+        "name": "L15",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 10.0,
+        "lower": 10.0,
+        "upper": 150.0
+      },
+      {
+        "stored_index": 18,
+        "name": "L17",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 14.0,
+        "lower": 8.0,
+        "upper": 180.0
+      },
+      {
+        "stored_index": 19,
+        "name": "L61",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 236.0,
+        "lower": 100.0,
+        "upper": 250.0
+      },
+      {
+        "stored_index": 20,
+        "name": "Lf2",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 277.0,
+        "lower": 180.0,
+        "upper": 380.0
+      },
+      {
+        "stored_index": 21,
+        "name": "L_down",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 15.0,
+        "lower": 8.0,
+        "upper": 130.0
+      },
+      {
+        "stored_index": 22,
+        "name": "theta18_deg",
+        "group": "静态机构几何",
+        "role": "independent",
+        "unit": "deg",
+        "initial": 120.0,
+        "lower": 30.0,
+        "upper": 150.0
+      },
+      {
+        "stored_index": 23,
+        "name": "B_Y_C0",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 10.0,
+        "lower": -130.0,
+        "upper": 80.0
+      },
+      {
+        "stored_index": 24,
+        "name": "B_Y_C1c",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": -50.0,
+        "lower": -180.0,
+        "upper": 180.0
+      },
+      {
+        "stored_index": 25,
+        "name": "B_Y_C1s",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -180.0,
+        "upper": 180.0
+      },
+      {
+        "stored_index": 26,
+        "name": "B_Y_C2c",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -80.0,
+        "upper": 80.0
+      },
+      {
+        "stored_index": 27,
+        "name": "B_Y_C2s",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -80.0,
+        "upper": 80.0
+      },
+      {
+        "stored_index": 28,
+        "name": "B_Z_C1c",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -180.0,
+        "upper": 180.0
+      },
+      {
+        "stored_index": 29,
+        "name": "B_Z_C1s",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": -50.0,
+        "lower": -180.0,
+        "upper": 180.0
+      },
+      {
+        "stored_index": 30,
+        "name": "B_Z_C2c",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -80.0,
+        "upper": 80.0
+      },
+      {
+        "stored_index": 31,
+        "name": "B_Z_C2s",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -80.0,
+        "upper": 80.0
+      },
+      {
+        "stored_index": 32,
+        "name": "B_CenterX",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 30.0,
+        "lower": -120.0,
+        "upper": 300.0
+      },
+      {
+        "stored_index": 33,
+        "name": "B_Z_C0",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -60.0,
+        "upper": 40.0
+      },
+      {
+        "stored_index": 34,
+        "name": "B_Z_C3c",
+        "group": "B 点周期输入",
+        "role": "derived",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -45.0,
+        "upper": 45.0
+      },
+      {
+        "stored_index": 35,
+        "name": "B_Z_C3s",
+        "group": "B 点周期输入",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -45.0,
+        "upper": 45.0
+      },
+      {
+        "stored_index": 36,
+        "name": "L3_C0",
+        "group": "L3 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 141.0,
+        "lower": 60.0,
+        "upper": 420.0
+      },
+      {
+        "stored_index": 37,
+        "name": "L3_C1c",
+        "group": "L3 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -55.0,
+        "upper": 55.0
+      },
+      {
+        "stored_index": 38,
+        "name": "L3_C1s",
+        "group": "L3 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -55.0,
+        "upper": 55.0
+      },
+      {
+        "stored_index": 39,
+        "name": "L3_C2c",
+        "group": "L3 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -35.0,
+        "upper": 35.0
+      },
+      {
+        "stored_index": 40,
+        "name": "L3_C2s",
+        "group": "L3 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -35.0,
+        "upper": 35.0
+      },
+      {
+        "stored_index": 41,
+        "name": "L3_C3c",
+        "group": "L3 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -20.0,
+        "upper": 20.0
+      },
+      {
+        "stored_index": 42,
+        "name": "L3_C3s",
+        "group": "L3 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -20.0,
+        "upper": 20.0
+      },
+      {
+        "stored_index": 43,
+        "name": "L8_C0",
+        "group": "L8 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 251.0,
+        "lower": 200.0,
+        "upper": 300.0
+      },
+      {
+        "stored_index": 44,
+        "name": "L8_C1c",
+        "group": "L8 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -55.0,
+        "upper": 55.0
+      },
+      {
+        "stored_index": 45,
+        "name": "L8_C1s",
+        "group": "L8 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -55.0,
+        "upper": 55.0
+      },
+      {
+        "stored_index": 46,
+        "name": "L8_C2c",
+        "group": "L8 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -35.0,
+        "upper": 35.0
+      },
+      {
+        "stored_index": 47,
+        "name": "L8_C2s",
+        "group": "L8 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -35.0,
+        "upper": 35.0
+      },
+      {
+        "stored_index": 48,
+        "name": "L8_C3c",
+        "group": "L8 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -20.0,
+        "upper": 20.0
+      },
+      {
+        "stored_index": 49,
+        "name": "L8_C3s",
+        "group": "L8 三阶周期长度",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -20.0,
+        "upper": 20.0
+      },
+      {
+        "stored_index": 50,
+        "name": "Target_Tx_mm",
+        "group": "目标共同位姿",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -600.0,
+        "upper": 200.0
+      },
+      {
+        "stored_index": 51,
+        "name": "Target_Ty_mm",
+        "group": "目标共同位姿",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -100.0,
+        "upper": 200.0
+      },
+      {
+        "stored_index": 52,
+        "name": "Target_Tz_mm",
+        "group": "目标共同位姿",
+        "role": "independent",
+        "unit": "mm",
+        "initial": 0.0,
+        "lower": -350.0,
+        "upper": 150.0
+      },
+      {
+        "stored_index": 53,
+        "name": "Target_Rx_rad",
+        "group": "目标共同位姿",
+        "role": "independent",
+        "unit": "rad",
+        "initial": 0.0,
+        "lower": -0.9,
+        "upper": 0.9
+      },
+      {
+        "stored_index": 54,
+        "name": "Target_Ry_rad",
+        "group": "目标共同位姿",
+        "role": "independent",
+        "unit": "rad",
+        "initial": 0.0,
+        "lower": -1.2,
+        "upper": 0.5
+      },
+      {
+        "stored_index": 55,
+        "name": "Target_Rz_rad",
+        "group": "目标共同位姿",
+        "role": "independent",
+        "unit": "rad",
+        "initial": 0.0,
+        "lower": -1.2,
+        "upper": 0.5
+      }
+    ]
+  },
+  "feasibility": {
+    "rule": "A candidate receives an objective value only after all 76 frames pass every hard check.",
+    "hard_constraints": [
+      "所有坐标、长度、角度和轨迹有限。",
+      "所有物理杆长及派生 L32(phi) 为正。",
+      "每帧 L6>L61。",
+      "L51<=L5/3, L52<=L5/3, L4>=L41。",
+      "L31/L32(phi)/L3(phi) 满足严格三角不等式。",
+      "闭环角位于 [5,175] deg 且对角线保留装配余量。",
+      "theta6<180 deg，指定机构角非负。",
+      "相邻帧及周期首尾圆周角步长不超过 0.45 rad。",
+      "Tip/Wrist 通过跳变和卡顿硬检查。",
+      "杆长恒等式误差不超过 1e-6 mm，B 输入误差不超过 1e-7 mm，C=Z 误差不超过 1e-10 mm。"
+    ]
+  },
+  "optimizer": {
+    "architecture": "cold start feasible pool -> sensitivity partition -> regional full-covariance CMA-ES -> SLSQP",
+    "allowed_methods": [
+      "parameter sensitivity partition",
+      "regional full-covariance CMA-ES",
+      "SLSQP"
+    ],
+    "forbidden_methods": [
+      "PSO",
+      "surrogate/neural search",
+      "historical checkpoint anchor",
+      "automatic abnormal resume"
+    ],
+    "default": {
+      "population": 192,
+      "generations_per_region": 10,
+      "regions_per_round": 12,
+      "sigma0": 0.04,
+      "refinement_method": "slsqp",
+      "sqp_active_dimensions": 54,
+      "objective_mode": "initialized_equal_arc_bottleneck_p64_with_stutter",
+      "search_scope": "all",
+      "target_pose_mode": "shared_rotation_translation6",
+      "periodic_length_mode": "l3_l8_periodic3_l5_fixed_l32_derived",
+      "b_curve_mode": "fourier_z3_c0",
+      "static_bound_mode": "broad_all54_20260802",
+      "start_checkpoint_path": null,
+      "input_contract_path": "fourbar_initialized_equal_arc_optimization_input_v2.json"
+    },
+    "anchor_distinction": {
+      "target_phase_initialization": "required measurement definition from Excel",
+      "historical_solution_anchor": "forbidden; no prior design vector, population, covariance, path or partition tree"
+    }
+  },
+  "report_output_contract": {
+    "document": "PDF only; no Word report",
+    "figures": "Python/Matplotlib, editable PDF/SVG and 600 dpi TIFF/PNG",
+    "variable_labels": "every independent variable plot must show the exact variable name; 54 variables appear exactly once",
+    "pca": "fit on normalized 54-dimensional independent tested vectors only; record scaler, sample filter, explained variance and fixed PC axes",
+    "accepted_rejected": "show tested candidate positions with separate colors and transparent density support",
+    "partition_cma_slsqp": "show partition evolution, CMA mean/covariance/sigma and SLSQP per-step contribution",
+    "video": "render the complete mechanism nodes and links, not only endpoint curves; provide oblique and synchronized three-view motion with frame QA",
+    "layout": "labels and annotations must not overlap data; dense explanations move to separate panels"
+  },
+  "self_check": {
+    "optimization_run_started": false,
+    "unit_test_count": 13,
+    "unit_tests_passed": 13,
+    "assertions": [
+      "cycle shift is penalized",
+      "direction reversal is penalized",
+      "repeated frame is rejected as a stall",
+      "Excel phase-zero anchor and hashes load fail-closed",
+      "tampered target CSV is rejected by SHA256",
+      "stutter penalty enters the p64 search objective",
+      "55 stored coordinates and 54 independent variables",
+      "B_Z_C3c is excluded from independent search",
+      "Target_Ty_mm bounds are exactly [-100,200] mm",
+      "machine-readable input contract matches runtime defaults and frozen hashes",
+      "manifest RMSE wording matches the coupled 6D implementation"
+    ]
+  },
+  "frozen_sources_at_generation": [
+    {
+      "path": "model/formal_initialized_equal_arc_v3/fourbar3d_python.py",
+      "sha256": "020B6E68F626F94A747A80AB99BB79C49BE16EBF166133D0539426225C9B5E29"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/fourbar_optimization.py",
+      "sha256": "CB66F6F50F0AA958E07C983955A36CB7979262692FF88163C813049BEA256F18"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/build_initialized_target_input.py",
+      "sha256": "11F868FFA05B922B77AABE1D631DAC5FB2F826880C67076A383E32EED74B42ED"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/test_initialized_equal_arc_rmse.py",
+      "sha256": "7D9F4C624C3626F7AB718E7B21D212C9E632D66605B0D8EB228D7193D8835992"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/test_model_contract.py",
+      "sha256": "40711189AECB62380B1353D09231FB88054C9130469FFEE353C6EC762C37853C"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/build_model_specification.py",
+      "sha256": "923DCE8909B6C531C64720B0F92D8624813993F9FF58901E15B171EDBDBA04B2"
+    },
+    {
+      "path": "input/Length_normalized_target_initialized_equal_arc_76_mm.csv",
+      "sha256": "15F5C3D71BB92DDEFC4CCD316C3DC940165A51AC8176D251C391D68A62D613DD"
+    },
+    {
+      "path": "input/Length_normalized_target_initialized_equal_arc_76_metadata.json",
+      "sha256": "E4FC6FC58A096A446AC658DB577182050BA2158575C67F79A516FA74DD8E97E0"
+    },
+    {
+      "path": "input/Length_normalized_target_documentation_with_initialization.xlsx",
+      "sha256": "F0E73E3E5A17CDB9D71D27C4B703CEA93C209814F3288B0EF5A758E71B6D045E"
+    }
+  ]
+}

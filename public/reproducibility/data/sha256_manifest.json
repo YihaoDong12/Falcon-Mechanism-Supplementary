@@ -1,0 +1,81 @@
+{
+  "algorithm": "SHA256",
+  "generated_at": "2026-08-05",
+  "files": [
+    {
+      "path": "input/fourbar_initialized_equal_arc_optimization_input_v2.json",
+      "bytes": 24039,
+      "sha256": "586B199ED6719B44C231258AAA16ECF56CE0B4FB05EAE80FD963BDB577908891"
+    },
+    {
+      "path": "input/Fourbar_初始化等弧长严格相位_完整模型与优化问题说明_v2.md",
+      "bytes": 8929,
+      "sha256": "8789813377FF727719DBF9990E360CA48505F0830722FCB9C045BD9E8AA85D28"
+    },
+    {
+      "path": "input/Fourbar_初始化等弧长严格相位_完整模型与优化问题说明_v2.pdf",
+      "bytes": 622013,
+      "sha256": "40CA5EE7A0F291F70FA3A6F9DB3B42FD3ECE829C868E61FE5A32A44A3931C759"
+    },
+    {
+      "path": "input/model_spec_figures/figure_initialized_strict_phase_and_stutter.svg",
+      "bytes": 39529,
+      "sha256": "44979C34F9641E0AE860196770A73B7042AE2CBB1A62CDAFEDE8EE972ACE241B"
+    },
+    {
+      "path": "input/model_spec_figures/figure_initialized_strict_phase_and_stutter.pdf",
+      "bytes": 41904,
+      "sha256": "8D5424F9A751E1F64E1646AD71E05E9B47CF0D6D70FA6F51CB5D566918E3F13D"
+    },
+    {
+      "path": "input/model_spec_figures/figure_initialized_strict_phase_and_stutter.png",
+      "bytes": 329171,
+      "sha256": "001DCA748504380C65F1E40E548FB2DF704C5E014B71B0D9CFA001A92701D216"
+    },
+    {
+      "path": "input/model_spec_figures/figure_initialized_strict_phase_and_stutter.tiff",
+      "bytes": 25965530,
+      "sha256": "DFABA38198360F72803F75DFF549BC0C7D5D3513E75413AA411352AF2A88CF0C"
+    },
+    {
+      "path": "input/Length_normalized_target_initialized_equal_arc_76_mm.csv",
+      "bytes": 10721,
+      "sha256": "15F5C3D71BB92DDEFC4CCD316C3DC940165A51AC8176D251C391D68A62D613DD"
+    },
+    {
+      "path": "input/Length_normalized_target_initialized_equal_arc_76_metadata.json",
+      "bytes": 1830,
+      "sha256": "E4FC6FC58A096A446AC658DB577182050BA2158575C67F79A516FA74DD8E97E0"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/fourbar3d_python.py",
+      "bytes": 280045,
+      "sha256": "020B6E68F626F94A747A80AB99BB79C49BE16EBF166133D0539426225C9B5E29"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/fourbar_optimization.py",
+      "bytes": 345384,
+      "sha256": "CB66F6F50F0AA958E07C983955A36CB7979262692FF88163C813049BEA256F18"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/build_initialized_target_input.py",
+      "bytes": 8025,
+      "sha256": "11F868FFA05B922B77AABE1D631DAC5FB2F826880C67076A383E32EED74B42ED"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/test_initialized_equal_arc_rmse.py",
+      "bytes": 4265,
+      "sha256": "7D9F4C624C3626F7AB718E7B21D212C9E632D66605B0D8EB228D7193D8835992"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/test_model_contract.py",
+      "bytes": 3581,
+      "sha256": "40711189AECB62380B1353D09231FB88054C9130469FFEE353C6EC762C37853C"
+    },
+    {
+      "path": "model/formal_initialized_equal_arc_v3/build_model_specification.py",
+      "bytes": 37524,
+      "sha256": "923DCE8909B6C531C64720B0F92D8624813993F9FF58901E15B171EDBDBA04B2"
+    }
+  ]
+}

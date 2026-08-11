@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "correspondence_mode": "strict_initialized_equal_arc_index",
+  "sample_count": 76,
+  "phase_domain": "[0,1)",
+  "units": "mm",
+  "source_workbook_path": "Length_normalized_target_documentation_with_initialization.xlsx",
+  "source_workbook_sha256": "F0E73E3E5A17CDB9D71D27C4B703CEA93C209814F3288B0EF5A758E71B6D045E",
+  "source_curve_sheet": "长度归一曲线",
+  "source_initialization_sheet": "初始化点",
+  "source_sample_count": 360,
+  "target_csv_path": "Length_normalized_target_initialized_equal_arc_76_mm.csv",
+  "target_csv_sha256": "15F5C3D71BB92DDEFC4CCD316C3DC940165A51AC8176D251C391D68A62D613DD",
+  "initialization": {
+    "event": "Wrist 由 z<0 向背侧上穿 z=0 平面",
+    "original_phase": 0.9850313957755277,
+    "model_phase": 0.0,
+    "phase_offset": 0.9850313957755277,
+    "wrist_mm": [
+      -209.0097303298715,
+      87.56669544590049,
+      -9.592326932761353e-14
+    ],
+    "tip_mm": [
+      -344.13604649057294,
+      -218.74906784487607,
+      -329.7780128346469
+    ],
+    "wrist_dz_dphase_mm_per_cycle": 1231.9005582526313,
+    "direction": "向背侧上穿"
+  },
+  "resampling": {
+    "space": "one coupled closed six-dimensional Tip+Wrist polyline arc length",
+    "tip_and_wrist": "one synchronized equal-arc partition preserving physical same-time pairs",
+    "generated_curve_rule": "retain mechanism frame 0, then use the same coupled 6D equal-arc rule",
+    "comparison": "same index only",
+    "forbidden": [
+      "nearest target point",
+      "nearest target segment",
+      "cyclic shift",
+      "direction reversal",
+      "candidate-dependent phase anchor"
+    ]
+  },
+  "diagnostics": {
+    "wrist_tip_length_mean_mm": 472.06073153210644,
+    "wrist_tip_length_cv_percent": 0.44415907348431705
+  }
+}

@@ -9,6 +9,7 @@ const sections = [
   ["04", "Optimization", "优化过程"],
   ["05", "Result", "最终结果"],
   ["06", "Paper", "完整论文"],
+  ["07", "Reproduce", "复现材料"],
 ];
 
 function useCsv(path: string) {
@@ -135,6 +136,14 @@ function MediaCard({ title, kicker, src, poster, children }: { title: string; ki
   );
 }
 
+function EvidenceFigure({ src, label, caption }: { src: string; label: string; caption: string }) {
+  return <figure className="evidence-figure"><img src={src} alt={caption} /><figcaption><b>{label}</b><span>{caption}</span></figcaption></figure>;
+}
+
+function DownloadItem({ href, label, title, meta }: { href: string; label: string; title: string; meta: string }) {
+  return <a className="download-item" href={href} download><span>{label}</span><h3>{title}</h3><p>{meta}</p><b>Download ↓</b></a>;
+}
+
 export default function Home() {
   const [view, setView] = useState<"front" | "side">("front");
   const [paperOpen, setPaperOpen] = useState(false);
@@ -152,27 +161,27 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="hero-ghost">FALCON</div>
         <div className="hero-copy">
-          <p className="eyebrow">SUPPLEMENTARY MATERIALS · JCDE · 2026</p>
+          <p className="eyebrow">SUPPLEMENTARY MATERIALS · JCDE · UPDATED 11 AUG 2026</p>
           <h1>Trajectory Synthesis of a<br/><em>Falcon-Inspired</em><br/>Flapping Mechanism</h1>
-          <p className="dek">A visual research archive connecting markerless flight reconstruction, analytical mechanism design, and sensitivity-partitioned optimization.</p>
+          <p className="dek">Markerless flight reconstruction, a three-joint five-DOF analytical mechanism, and a strict cold-start sensitivity-partitioned CMA-ES + SQP synthesis record.</p>
           <div className="authors">Yihao Dong · Vladimir Parezanovic · Yusra Abdulrahman<br/><span>Khalifa University · Aerospace Engineering</span></div>
         </div>
         <div className="hero-media">
           <video src="media/web/flight-side.mp4" poster="media/web/flight-side.jpg" autoPlay muted loop playsInline />
-          <div className="hero-tag"><span>01 / FIELD RECORDING</span><b>Side view</b></div>
+          <div className="hero-tag"><span>01 / FIELD RECORDING</span><b>High-speed side view</b></div>
         </div>
         <a href="#s01" className="scroll-cue">SCROLL TO EXPLORE <span>↓</span></a>
       </section>
 
-      <section className="paper-strip">
-        <p>Three joints</p><b>05</b><p>Degrees of freedom</p><b>54</b><p>Independent variables</p><b>13</b><p>Contract tests</p>
+      <section className="paper-strip result-strip">
+        <b>4.67M</b><p>Candidates evaluated</p><b>24.61%</b><p>Full-cycle feasible</p><b>45.43</b><p>Tip RMSE · mm</p><b>45.56</b><p>Wrist RMSE · mm</p>
       </section>
 
       <section className="chapter" id="s01">
         <div className="section-head"><p>01 — OBSERVATION</p><h2>Flight, seen twice.</h2><span>猎隼飞行原始记录</span></div>
         <div className="split-media">
-          <MediaCard kicker="CAMERA A · FRONT" title="Frontal flight sequence" src="media/web/flight-front.mp4" poster="media/web/flight-front.jpg" />
-          <MediaCard kicker="CAMERA B · SIDE" title="Lateral flight sequence" src="media/web/flight-side.mp4" poster="media/web/flight-side.jpg" />
+          <MediaCard kicker="CAMERA A · REAR" title="Rear take-off sequence" src="media/web/flight-rear.mp4" poster="media/web/flight-rear.jpg" />
+          <MediaCard kicker="CAMERA B · SIDE · 120 FPS SOURCE" title="High-speed lateral flight sequence" src="media/web/flight-side.mp4" poster="media/web/flight-side.jpg" />
         </div>
         <p className="chapter-note">Synchronized camera views establish the spatial evidence base. The paired recordings expose sweep, extension, and distal-wing motion that cannot be recovered from one projection alone.</p>
       </section>
@@ -191,49 +200,80 @@ export default function Home() {
           <div className="curve-copy"><span>LIVE RECONSTRUCTION</span><h3>Wingbeat phase draws the wrist and wingtip curves.</h3><p>The two trajectories share one coupled six-dimensional arc-length coordinate, preserving physical simultaneity through the wingbeat.</p></div>
           <AnimatedCurve mode="trajectory" />
         </div>
+        <EvidenceFigure src="media/dlc-analysis.png" label="FIGURE 02" caption="DeepLabCut extraction, confidence handling, and cross-view reconstruction evidence" />
       </section>
 
       <section className="chapter" id="s03">
         <div className="section-head"><p>03 — ANALYTICAL MODEL</p><h2>One drive.<br/>Five coordinated motions.</h2><span>机构组成与多视角运动</span></div>
-        <figure className="publication-figure"><figcaption><b>FIGURE 01</b><span>Analytical mechanism definition · unified source figure</span></figcaption><img className="wide-figure" src="media/mechanism.png" alt="Falcon-inspired mechanism composition and kinematic views" /></figure>
+        <div className="figure-stack">
+          <EvidenceFigure src="media/design-logic.png" label="DESIGN LOGIC" caption="Actuation authority, paired spatial compatibility, and feasibility-aware multiscale search" />
+          <EvidenceFigure src="media/mechanism.png" label="MECHANISM" caption="Three-joint, five-DOF analytical topology and sequential closed-loop construction" />
+        </div>
         <div className="mechanism-notes">
           <div><b>I</b><h3>Root drive</h3><p>Periodic shoulder-root input initiates the closed-loop transmission.</p></div>
           <div><b>II–VI</b><h3>Linked closure</h3><p>Sequential planar loops coordinate the elbow and wrist assemblies.</p></div>
-          <div><b>VII–VIII</b><h3>Spatial expansion</h3><p>Out-of-plane rotations recover the distal three-dimensional motion.</p></div>
+          <div><b>54D</b><h3>Coupled synthesis</h3><p>Static geometry, periodic Point-B and link inputs, and one common target pose are optimized together.</p></div>
         </div>
       </section>
 
       <section className="chapter optimization" id="s04">
         <div className="section-head"><p>04 — SEARCH PROCESS</p><h2>The design space,<br/>made visible.</h2><span>目标函数、自变量与分区演化</span></div>
-        <img className="framework" src="media/optimization-framework.png" alt="Sensitivity-partitioned CMA-ES and SLSQP optimization framework" />
-        <div className="animation-grid">
-          <MediaCard kicker="OBJECTIVE" title="Best score over candidate evaluations"><AnimatedCurve mode="convergence" /></MediaCard>
-          <MediaCard kicker="DESIGN VARIABLES" title="Periodic parameters over wingbeat phase"><AnimatedCurve mode="parameters" /></MediaCard>
-          <MediaCard kicker="PARTITIONING" title="Feasible regions created by optimization round"><AnimatedCurve mode="partition" /></MediaCard>
+        <img className="framework" src="media/optimization-framework.png" alt="Sensitivity-partitioned CMA-ES and SQP optimization framework" />
+        <div className="optimization-film">
+          <video src="media/web/optimization-convergence.mp4" poster="media/web/optimization-convergence.jpg" autoPlay muted loop playsInline controls preload="metadata" />
+          <div><span>60-SECOND ITERATION RECORD</span><h3>PCA exploration and CMA-ES convergence evolve with the formal incumbent.</h3><p>The animation separates the tested population from accepted improvements and preserves fixed PCA axes so movement through the 54-dimensional search can be read consistently over time.</p></div>
         </div>
-        <p className="method-note"><b>Method note.</b> Static sensitivity expands the design bounds; regional CMA-ES searches correlated feasible directions; active-set SLSQP refines the most promising basins.</p>
+        <div className="optimization-stats">
+          <div><b>6,507</b><span>CMA-ES generations</span></div><div><b>639</b><span>Split decisions</span></div><div><b>340</b><span>Executed partitions</span></div><div><b>51 / 51</b><span>Accepted SQP calls</span></div>
+        </div>
+        <div className="evidence-grid">
+          <EvidenceFigure src="media/optimization-evidence.png" label="COLD START" caption="Generation scores, SQP refinements, formal incumbent, and paired endpoint errors" />
+          <EvidenceFigure src="media/method-result.png" label="INTEGRATED EVIDENCE" caption="Final mechanism, fixed-axis PCA, partition hierarchy, split counts, and SQP gains" />
+          <EvidenceFigure src="media/iteration-atlas.png" label="DESIGN EVOLUTION" caption="Selected fixed-length mechanism states across the recorded search" />
+        </div>
+        <p className="method-note"><b>Method note.</b> Sensitivity screening partitions influential directions; regional CMA-ES explores correlated feasible regions; SQP refines candidates that pass every full-cycle closure and continuity check.</p>
       </section>
 
       <section className="chapter result" id="s05">
         <div className="section-head light"><p>05 — SYNTHESIZED MOTION</p><h2>The mechanism<br/>in motion.</h2><span>优化机构与目标轨迹对比</span></div>
         <div className="result-stage">
-          <video src="media/web/optimized-mechanism.mp4" poster="media/web/optimized-mechanism.jpg" autoPlay muted loop playsInline controls />
-          <div className="result-caption"><span>FOUR SYNCHRONIZED VIEWS</span><h3>Generated wrist and wingtip trajectories versus biological targets</h3><p>Move through one full input cycle to inspect mechanism closure, phase correspondence, and spatial curve agreement.</p></div>
+          <video src="media/web/optimized-mechanism.mp4" poster="media/web/optimized-mechanism.jpg" autoPlay muted loop playsInline controls preload="metadata" />
+          <div className="result-caption"><span>PHASE-LOCKED KINEMATICS</span><h3>Generated wrist and wingtip trajectories versus biological targets</h3><p>The 60-second orbit follows one complete phase cycle while reporting absolute X–Z correspondence, periodic L3 and L8 lengths, and the Point-B path.</p><dl><div><dt>Tip RMSE</dt><dd>45.43 mm</dd></div><div><dt>Wrist RMSE</dt><dd>45.56 mm</dd></div><div><dt>Replay error</dt><dd>≤ 6.82 × 10⁻¹³</dd></div></dl></div>
         </div>
-        <div className="phase-band"><img src="media/phase-contract.png" alt="Strict initialized phase correspondence between target and model"/><div><span>STRICT PHASE CONTRACT</span><h3>Same index. Same physical moment.</h3><p>Cyclic shifts and reversed traversals are explicitly rejected. The comparison preserves the measured ordering of the wingbeat.</p></div></div>
+        <div className="result-figures">
+          <EvidenceFigure src="media/optimized-actuation.png" label="EVENT-LEVEL MOTION" caption="Orthogonal mechanism views, paired trajectories, periodic inputs, and ten phase states" />
+          <EvidenceFigure src="media/strict-phase-fit.png" label="STRICT PHASE FIT" caption="Same-index generated and biological trajectories without cyclic shift or reversal" />
+        </div>
       </section>
 
       <section className="chapter paper" id="s06">
         <div className="section-head"><p>06 — ARTICLE</p><h2>Read the complete paper.</h2><span>全文、摘要与章节</span></div>
         <div className="abstract-grid">
-          <div><span>ABSTRACT</span><p>Compact flapping mechanisms cannot readily reproduce the synchronized three-dimensional motion of an avian wrist and wingtip because both trajectories must emerge from one periodically driven, closed-loop transmission. Here we establish a falcon-inspired synthesis framework that links markerless flight reconstruction to a three-joint, five-degree-of-freedom analytical mechanism. DeepLabCut observations are corrected for confidence and anatomical length, anchored by a unique measured wrist event, and resampled with one coupled six-dimensional arc-length coordinate. Fifty-four independent variables describe the mechanism and common target pose, while sensitivity-guided partitioning, CMA-ES, and SLSQP provide a reproducible synthesis workflow.</p></div>
-          <ol>{["Introduction", "Problem formulation & framework", "Biological trajectory preprocessing", "Sensitivity-guided optimization", "Results", "Conclusions", "Mechanism reconstruction", "Optimization domain"].map((x, i) => <li key={x}><b>{String(i + 1).padStart(2, "0")}</b>{x}</li>)}</ol>
+          <div><span>ABSTRACT · UPDATED MANUSCRIPT</span><p>Compact flapping mechanisms must transform a small set of periodic actuator motions into synchronized three-dimensional wrist and wingtip trajectories. Here we connect markerless flight reconstruction to the inverse synthesis of a three-joint, five-degree-of-freedom falcon-inspired mechanism. Sensitivity-selected periodic translations complement the rotary drive; paired trajectories are evaluated by equally weighted same-phase absolute-distance RMSE terms; and sensitivity-guided partitioning, regional CMA-ES, and SQP recover and refine feasible basins. A strict cold-start run recovered a full-cycle feasible design, and independent replay confirmed event-level metric reproducibility.</p></div>
+          <ol>{["Introduction", "Problem formulation & research framework", "Biological trajectory preprocessing", "Biologically inspired hybrid optimization", "Results", "Conclusions & outlook", "Replication of results", "Appendices: model & optimization domain"].map((x, i) => <li key={x}><b>{String(i + 1).padStart(2, "0")}</b>{x}</li>)}</ol>
         </div>
         <div className="paper-actions"><button onClick={() => setPaperOpen(!paperOpen)}>{paperOpen ? "Close embedded paper" : "Open paper in this window"}</button><a href="media/manuscript.pdf" download>Download PDF ↓</a></div>
         {paperOpen && <iframe className="pdf-frame" src="media/manuscript.pdf" title="Complete research paper" />}
       </section>
 
-      <footer><div className="brand"><span>FW</span><b>FALCON / SYNTHESIS</b></div><p>Supplementary materials archive · Khalifa University · 2026</p><a href="#top">BACK TO TOP ↑</a></footer>
+      <section className="chapter reproducibility" id="s07">
+        <div className="section-head"><p>07 — REPRODUCIBILITY</p><h2>Inspect the evidence.<br/>Replay the result.</h2><span>代码、原始数据与验证记录</span></div>
+        <div className="repro-intro"><p>The archive below is tied to the verified strict-phase event at evaluation 1,074,004. It includes the analytical model, frozen target contract, final variables, trajectory replay, CMA-ES history, partition decisions, and accepted SQP calls.</p><a href="https://github.com/YihaoDong12/Falcon-Mechanism-Supplementary/tree/main/public/reproducibility" target="_blank">Browse all files on GitHub ↗</a></div>
+        <div className="download-grid">
+          <DownloadItem href="reproducibility/model/fourbar3d_python.py" label="PYTHON · MODEL" title="Analytical closed-loop mechanism" meta="Three-dimensional sequential mechanism solver" />
+          <DownloadItem href="reproducibility/model/fourbar_optimization.py" label="PYTHON · OPTIMIZATION" title="Optimization problem definition" meta="Bounds, feasibility contract, and paired objective" />
+          <DownloadItem href="reproducibility/data/optimization_input.json" label="JSON · CONTRACT" title="Frozen 54-variable input" meta="Strict initialized equal-arc optimization contract" />
+          <DownloadItem href="reproducibility/data/target_source_workbook.xlsx" label="XLSX · RAW SOURCE" title="Target source workbook" meta="Reconstruction source with initialization record" />
+          <DownloadItem href="reproducibility/data/final_variables_and_bounds.csv" label="CSV · RESULT" title="Final variables and bounds" meta="Replayed event vector with engineering limits" />
+          <DownloadItem href="reproducibility/data/inverse_rotated_strict_trajectories.csv" label="CSV · TRAJECTORIES" title="Strict same-phase trajectories" meta="Generated and target wrist / wingtip coordinates" />
+          <DownloadItem href="reproducibility/data/cma_generations.csv" label="CSV · HISTORY" title="CMA-ES generation record" meta="6,507 generations and candidate statistics" />
+          <DownloadItem href="reproducibility/data/partition_splits.csv" label="CSV · PARTITIONS" title="Sensitivity split history" meta="Resolved regional split decisions" />
+          <DownloadItem href="reproducibility/data/slsqp_calls.csv" label="CSV · LOCAL SEARCH" title="Accepted SQP calls" meta="Event-level local refinement history" />
+        </div>
+        <p className="archive-note"><b>Evidence boundary.</b> Independent event replay reproduced all reported final metrics. The launcher did not complete checkpoint-level finalization, so this archive supports the selected event rather than claiming a finalized terminal checkpoint or universal global optimum.</p>
+      </section>
+
+      <footer><div className="brand"><span>FW</span><b>FALCON / SYNTHESIS</b></div><p>Paper, videos, optimization evidence, code, and source data · Khalifa University · 2026</p><a href="#top">BACK TO TOP ↑</a></footer>
     </main>
   );
 }

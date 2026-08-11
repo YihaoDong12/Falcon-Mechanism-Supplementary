@@ -1,11 +1,8 @@
 import assert from "node:assert/strict";
-import { access, readFile, readdir } from "node:fs/promises";
+import { access, readFile, stat } from "node:fs/promises";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
 const templateRoot = new URL("../", import.meta.url);
-const previewRoot = new URL("../app/_sites-preview/", import.meta.url);
 
 async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -28,64 +25,43 @@ async function render() {
   );
 }
 
-test("server-renders the starter loading skeleton", async () => {
+test("server-renders the complete supplementary archive", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, developmentPreviewMeta);
-  assert.match(html, /<title>Your site is taking shape<\/title>/i);
-  assert.match(html, /Building your site/);
-  assert.match(html, /Your site is taking shape/);
-  assert.match(
-    html,
-    /Your first version will appear here automatically when it’s ready\./,
-  );
-  assert.doesNotMatch(html, /Codex/);
-  assert.match(html, /react-loading-skeleton/);
-  assert.match(html, /role="status"/);
+  assert.match(html, /<title>Three-Joint, Five-DOF Falcon-Inspired Flapping Mechanism · Supplementary Materials<\/title>/i);
+  assert.match(html, /UPDATED 11 AUG 2026/);
+  assert.match(html, /media\/web\/optimization-convergence\.mp4/);
+  assert.match(html, /media\/web\/optimized-mechanism\.mp4/);
+  assert.match(html, /Tip RMSE · mm/);
+  assert.match(html, /45\.56/);
+  assert.match(html, /07 — REPRODUCIBILITY/);
+  assert.match(html, /reproducibility\/data\/cma_generations\.csv/);
+  assert.doesNotMatch(html, /codex-preview|loading skeleton/i);
 });
 
-test("keeps the loading skeleton scoped and disposable", async () => {
-  const [preview, css, page, layout, packageJson, files] = await Promise.all([
-    readFile(new URL("SkeletonPreview.tsx", previewRoot), "utf8"),
-    readFile(new URL("preview.css", previewRoot), "utf8"),
+test("ships the paper, scientific videos, and replay data", async () => {
+  const [page, layout, paperInfo, optimizationVideoInfo, resultVideoInfo] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../package.json", import.meta.url), "utf8"),
-    readdir(previewRoot),
+    stat(new URL("../public/media/manuscript.pdf", import.meta.url)),
+    stat(new URL("../public/media/web/optimization-convergence.mp4", import.meta.url)),
+    stat(new URL("../public/media/web/optimized-mechanism.mp4", import.meta.url)),
   ]);
 
-  assert.deepEqual(files.sort(), ["SkeletonPreview.tsx", "preview.css"]);
-  assert.match(preview, /from "react-loading-skeleton"/);
-  assert.match(preview, /baseColor="#eceae7"/);
-  assert.match(preview, /highlightColor="#f9f8f6"/);
-  assert.match(preview, /duration=\{2\.8\}/);
-  assert.match(preview, /sites-skeleton-search-placeholder/);
-  assert.match(packageJson, /"react-loading-skeleton": "3\.5\.0"/);
+  assert.ok(paperInfo.size > 10_000_000);
+  assert.ok(optimizationVideoInfo.size > 1_000_000);
+  assert.ok(resultVideoInfo.size > 1_000_000);
+  assert.match(page, /evaluation 1,074,004/);
+  assert.match(page, /6,507 generations/);
+  assert.match(layout, /CMA-ES \+ SQP optimization evidence/);
 
-  const shellIndex = preview.indexOf('className="sites-skeleton-shell"');
-  const statusIndex = preview.indexOf('className="sites-skeleton-status"');
-  assert.ok(shellIndex >= 0 && statusIndex > shellIndex);
-  assert.match(css, /position:\s*fixed/);
-  assert.match(css, /inset:\s*0/);
-  assert.match(css, /opacity:\s*0\.52/);
-  assert.match(css, /prefers-reduced-motion:\s*reduce/);
-  assert.doesNotMatch(css, /#020617|canvas|pets|progress/i);
-  assert.doesNotMatch(
-    preview,
-    /loading-spinner|status-mark|status-progress|canvas|cookie|random/i,
-  );
-
-  assert.match(page, /export const metadata:\s*Metadata/);
-  assert.match(page, /"codex-preview": "development"/);
-  assert.match(page, /<SkeletonPreview \/>/);
-  assert.match(layout, /title:\s*"Starter Project"/);
-  assert.doesNotMatch(layout, /codex-preview|_sites-preview|themeColor|\bViewport\b/);
-  assert.doesNotMatch(css, /(^|\s)(html|body)\s*\{/m);
-
-  await assert.rejects(
-    access(new URL("public/_sites-preview", templateRoot)),
-  );
+  await Promise.all([
+    access(new URL("public/reproducibility/model/fourbar3d_python.py", templateRoot)),
+    access(new URL("public/reproducibility/data/optimization_input.json", templateRoot)),
+    access(new URL("public/reproducibility/data/inverse_rotated_strict_trajectories.csv", templateRoot)),
+    access(new URL("public/reproducibility/data/sha256_manifest.json", templateRoot)),
+  ]);
 });

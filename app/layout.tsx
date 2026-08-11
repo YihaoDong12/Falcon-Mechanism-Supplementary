@@ -5,8 +5,8 @@ import "./globals.css";
 const geist = Geist({ variable: "--font-sans", subsets: ["latin"] });
 const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"] });
 
-const title = "Falcon-Inspired Flapping Mechanism · Supplementary Materials";
-const description = "Flight reconstruction, analytical mechanism motion, and sensitivity-partitioned optimization for a falcon-inspired flapping mechanism.";
+const title = "Three-Joint, Five-DOF Falcon-Inspired Flapping Mechanism · Supplementary Materials";
+const description = "Flight reconstruction, phase-locked mechanism motion, strict cold-start CMA-ES + SQP optimization evidence, paper, code, and source data.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yihaodong12.github.io/Falcon-Mechanism-Supplementary/"),

@@ -1,0 +1,56 @@
+stored_index_1based,independent_index_1based,group,name,lower,upper,final_normalized
+1,1.0,Static geometry and angles,L2,10.0,350.0,0.37104314354368706
+2,2.0,Static geometry and angles,L31,10.0,150.0,0.5897109012947589
+3,3.0,Static geometry and angles,L4,10.0,100.0,0.626670774549451
+4,4.0,Static geometry and angles,L41,5.0,50.0,0.47672651806353183
+5,5.0,Static geometry and angles,L5,100.0,340.0,0.42968956588383544
+6,6.0,Static geometry and angles,L51,10.0,50.0,0.4035522362696245
+7,7.0,Static geometry and angles,L52,10.0,50.0,0.3361993492770562
+8,8.0,Static geometry and angles,L6,200.0,300.0,0.46416063234571536
+9,9.0,Static geometry and angles,L7,200.0,300.0,0.3939494106705783
+10,10.0,Static geometry and angles,L9,10.0,100.0,0.5373006966197837
+11,11.0,Static geometry and angles,L10,10.0,50.0,0.23450831013583845
+12,12.0,Static geometry and angles,L11,10.0,100.0,0.30380269777514357
+13,13.0,Static geometry and angles,L12,5.0,50.0,0.12542668211124056
+14,14.0,Static geometry and angles,L13,8.0,100.0,0.2934427660596414
+15,15.0,Static geometry and angles,LRod,10.0,150.0,0.2284345877914805
+16,16.0,Static geometry and angles,L14,10.0,50.0,0.41294153704405756
+17,17.0,Static geometry and angles,L15,10.0,150.0,0.23209796641014094
+18,18.0,Static geometry and angles,L17,8.0,180.0,0.37444833039028513
+19,19.0,Static geometry and angles,L61,100.0,250.0,0.3271412687555208
+20,20.0,Static geometry and angles,Lf2,180.0,380.0,0.8705066921277759
+21,21.0,Static geometry and angles,L_down,8.0,130.0,0.19787281962145972
+22,22.0,Static geometry and angles,theta18_deg,30.0,150.0,0.6001246747014416
+23,23.0,Independent B-point inputs,B_Y_C0,-130.0,80.0,0.7928924371975937
+24,24.0,Independent B-point inputs,B_Y_C1c,-180.0,180.0,0.5838159583869947
+25,25.0,Independent B-point inputs,B_Y_C1s,-180.0,180.0,0.504340152430481
+26,26.0,Independent B-point inputs,B_Y_C2c,-80.0,80.0,0.5365443620531257
+27,27.0,Independent B-point inputs,B_Y_C2s,-80.0,80.0,0.4993879869974647
+28,28.0,Independent B-point inputs,B_Z_C1c,-180.0,180.0,0.5000818476503365
+29,29.0,Independent B-point inputs,B_Z_C1s,-180.0,180.0,0.4078125270934431
+30,30.0,Independent B-point inputs,B_Z_C2c,-80.0,80.0,0.5531830152866765
+31,31.0,Independent B-point inputs,B_Z_C2s,-80.0,80.0,0.5129496736357149
+32,32.0,Independent B-point inputs,B_CenterX,-120.0,300.0,0.42431483301559036
+33,33.0,Independent B-point inputs,B_Z_C0,-60.0,40.0,0.5160281994053291
+34,,Derived audit,B_Z_C3c,-45.0,45.0,0.49842702732752814
+35,34.0,Independent B-point inputs,B_Z_C3s,-45.0,45.0,0.5074926788049469
+36,35.0,Periodic L3/L8 coefficients,L3_C0,60.0,420.0,0.5434438533450264
+37,36.0,Periodic L3/L8 coefficients,L3_C1c,-55.0,55.0,0.4801489997166286
+38,37.0,Periodic L3/L8 coefficients,L3_C1s,-55.0,55.0,0.42611137553256606
+39,38.0,Periodic L3/L8 coefficients,L3_C2c,-35.0,35.0,0.5212725797365806
+40,39.0,Periodic L3/L8 coefficients,L3_C2s,-35.0,35.0,0.49894957752430785
+41,40.0,Periodic L3/L8 coefficients,L3_C3c,-20.0,20.0,0.5276149541289755
+42,41.0,Periodic L3/L8 coefficients,L3_C3s,-20.0,20.0,0.5183459838063207
+43,42.0,Periodic L3/L8 coefficients,L8_C0,200.0,300.0,0.1856097909603409
+44,43.0,Periodic L3/L8 coefficients,L8_C1c,-55.0,55.0,0.3504239571223609
+45,44.0,Periodic L3/L8 coefficients,L8_C1s,-55.0,55.0,0.5395560943285256
+46,45.0,Periodic L3/L8 coefficients,L8_C2c,-35.0,35.0,0.4843387905588694
+47,46.0,Periodic L3/L8 coefficients,L8_C2s,-35.0,35.0,0.45920657678397847
+48,47.0,Periodic L3/L8 coefficients,L8_C3c,-20.0,20.0,0.5015825378201901
+49,48.0,Periodic L3/L8 coefficients,L8_C3s,-20.0,20.0,0.4487267601409761
+50,49.0,Shared target pose,Target_Tx_mm,-600.0,200.0,0.6033013246906042
+51,50.0,Shared target pose,Target_Ty_mm,-100.0,200.0,0.0012823797405129749
+52,51.0,Shared target pose,Target_Tz_mm,-350.0,150.0,0.7584886662049094
+53,52.0,Shared target pose,Target_Rx_rad,-0.25,0.25,0.44484740046736315
+54,53.0,Shared target pose,Target_Ry_rad,-0.25,0.25,0.5545946535964222
+55,54.0,Shared target pose,Target_Rz_rad,-0.25,0.25,0.0002459334160548887

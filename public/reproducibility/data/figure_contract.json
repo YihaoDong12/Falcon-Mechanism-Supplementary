@@ -1,0 +1,45 @@
+{
+  "core_conclusion": "Setting L15=L16=15 mm while fixing QM preserves M, Q, Tip, Wrist, their trajectories, and the mechanism connection topology.",
+  "evidence_chain": [
+    "Strict phase-locked trajectory agreement in the inverse pose frame",
+    "Original 76-frame residual and stutter diagnostics",
+    "Complete three-view and oblique mechanism geometry",
+    "Direct original-versus-revised local geometry audit",
+    "Unchanged B input, periodic L3/L8 programs, and static L7 length"
+  ],
+  "archetype": "schematic-led composite with quantitative validation",
+  "backend": "Python/Matplotlib only",
+  "journal_export_contract": {
+    "module_width_mm": 52.5,
+    "full_width_mm": 210.0,
+    "formats": [
+      "PDF",
+      "SVG",
+      "PNG",
+      "TIFF"
+    ],
+    "raster_dpi": 600,
+    "editable_svg_text": true,
+    "figure_language": "English only",
+    "gridlines": false
+  },
+  "review_risks": [
+    "The local revision is not a new optimization run.",
+    "Search-history and PCA panels are intentionally excluded.",
+    "M, Q, Tip, Wrist, and strict trajectories must remain byte-level derived from the source replay."
+  ],
+  "geometry": {
+    "L15_OP_mm": 15.0,
+    "L16_PQ_mm": 15.0,
+    "QM_mm": 111.50509207660176,
+    "MO_mm": 81.50509207660173,
+    "QM_fixed": true,
+    "topology_unchanged": true
+  },
+  "source": {
+    "event_file": "C:\\Users\\Dakota\\OneDrive - ku.ac.ae\\Study\\FlapingWing\\Python\\Deeplearning\\最终方案\\active_runs\\20260809_123247_cold_no_anchor_pm0p25_strict_12h_seed20260872\\optimization_data\\20260809T084512Z_32891b09eb\\events.jsonl",
+    "evaluation": 1074004,
+    "checkpoint_or_npz_read": false,
+    "event_line": 3105
+  }
+}
