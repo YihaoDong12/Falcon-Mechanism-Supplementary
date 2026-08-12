@@ -124,11 +124,11 @@ function AnimatedCurve({ mode }: { mode: "trajectory" | "convergence" | "paramet
   return <canvas ref={canvasRef} className="data-canvas" aria-label={`${mode} animated data visualization`} />;
 }
 
-function MediaCard({ title, kicker, src, poster, children }: { title: string; kicker: string; src?: string; poster?: string; children?: React.ReactNode }) {
+function MediaCard({ title, kicker, src, poster, playbackRate = 1, children }: { title: string; kicker: string; src?: string; poster?: string; playbackRate?: number; children?: React.ReactNode }) {
   return (
     <article className="media-card">
       <div className="media-frame">
-        {src ? <video src={src} poster={poster} autoPlay muted loop playsInline controls={false} /> : children}
+        {src ? <video src={src} poster={poster} autoPlay muted loop playsInline controls={false} onLoadedMetadata={(event) => { event.currentTarget.playbackRate = playbackRate; }} /> : children}
         <span className="loop-pill"><i /> LOOP</span>
       </div>
       <div className="card-copy"><span>{kicker}</span><h3>{title}</h3></div>
@@ -188,7 +188,7 @@ export default function Home() {
         <div className="section-head light"><p>02 — RECONSTRUCTION</p><h2>Markerless trajectory reconstruction</h2><span>DeepLabCut 标定与三维轨迹</span></div>
         <div className="split-media dlc-pair">
           <MediaCard kicker="DLC / CAMERA A · FRONT" title="Front-view marker tracking" src="media/web/dlc-front.mp4" poster="media/web/dlc-front.jpg" />
-          <MediaCard kicker="DLC / CAMERA B · SIDE" title="Side-view marker tracking" src="media/web/dlc-side.mp4" poster="media/web/dlc-side.jpg" />
+          <MediaCard kicker="DLC / CAMERA B · SIDE · 0.4×" title="Side-view marker tracking · slow motion" src="media/web/dlc-side.mp4" poster="media/web/dlc-side.jpg" playbackRate={0.4} />
         </div>
         <div className="curve-grid">
           <div className="curve-copy"><span>COUPLED PHASE COORDINATE</span><h3>Wrist and wingtip trajectories are reconstructed at the same wingbeat phase.</h3><p>A shared six-dimensional arc-length coordinate preserves the simultaneity of the paired biological observations.</p></div>
