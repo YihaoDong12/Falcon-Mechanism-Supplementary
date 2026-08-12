@@ -145,7 +145,6 @@ function DownloadItem({ href, label, title, meta }: { href: string; label: strin
 }
 
 export default function Home() {
-  const [view, setView] = useState<"front" | "side">("front");
   const [paperOpen, setPaperOpen] = useState(false);
 
   return (
@@ -161,14 +160,15 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="hero-ghost">FALCON</div>
         <div className="hero-copy">
-          <p className="eyebrow">SUPPLEMENTARY MATERIALS · JCDE · UPDATED 11 AUG 2026</p>
+          <p className="eyebrow">SUPPLEMENTARY MATERIALS · JCDE · UPDATED 12 AUG 2026</p>
           <h1>Trajectory Synthesis of a<br/><em>Falcon-Inspired</em><br/>Flapping Mechanism</h1>
           <p className="dek">Supplementary record for markerless flight reconstruction, the analytical three-joint five-DOF mechanism, and the verified strict cold-start CMA-ES + SQP result.</p>
           <div className="authors">Yihao Dong · Vladimir Parezanovic · Yusra Abdulrahman<br/><span>Khalifa University · Aerospace Engineering</span></div>
         </div>
-        <div className="hero-media">
-          <video src="media/web/flight-side.mp4" poster="media/web/flight-side.jpg" autoPlay muted loop playsInline />
-          <div className="hero-tag"><span>01 / FIELD RECORDING</span><b>High-speed side view</b></div>
+        <div className="hero-system" aria-label="Research workflow">
+          <span className="system-status"><i /> VERIFIED SUPPLEMENTARY RECORD</span>
+          <div className="system-orbit"><b>54D</b><span>coupled design space</span></div>
+          <ol><li><b>01</b> Observe</li><li><b>02</b> Reconstruct</li><li><b>03</b> Model</li><li><b>04</b> Optimize</li><li><b>05</b> Validate</li></ol>
         </div>
         <a href="#s01" className="scroll-cue">SCROLL TO EXPLORE <span>↓</span></a>
       </section>
@@ -188,31 +188,19 @@ export default function Home() {
 
       <section className="chapter ink" id="s02">
         <div className="section-head light"><p>02 — RECONSTRUCTION</p><h2>Markerless trajectory reconstruction</h2><span>DeepLabCut 标定与三维轨迹</span></div>
-        <div className="view-switch" role="group" aria-label="Select camera view">
-          <button className={view === "front" ? "active" : ""} onClick={() => setView("front")}>Front view</button>
-          <button className={view === "side" ? "active" : ""} onClick={() => setView("side")}>Side view</button>
-        </div>
-        <div className="dlc-stage">
-          <video key={view} src={view === "front" ? "media/web/dlc-front.mp4" : "media/web/dlc-side.mp4"} poster={view === "front" ? "media/web/dlc-front.jpg" : "media/web/dlc-side.jpg"} autoPlay muted loop playsInline />
-          <div className="stage-index">DLC / {view === "front" ? "A" : "B"}</div>
+        <div className="split-media dlc-pair">
+          <MediaCard kicker="DLC / CAMERA A · FRONT" title="Front-view marker tracking" src="media/web/dlc-front.mp4" poster="media/web/dlc-front.jpg" />
+          <MediaCard kicker="DLC / CAMERA B · SIDE" title="Side-view marker tracking" src="media/web/dlc-side.mp4" poster="media/web/dlc-side.jpg" />
         </div>
         <div className="curve-grid">
           <div className="curve-copy"><span>COUPLED PHASE COORDINATE</span><h3>Wrist and wingtip trajectories are reconstructed at the same wingbeat phase.</h3><p>A shared six-dimensional arc-length coordinate preserves the simultaneity of the paired biological observations.</p></div>
           <AnimatedCurve mode="trajectory" />
         </div>
-        <EvidenceFigure src="media/dlc-analysis.png" label="FIGURE 02" caption="DeepLabCut extraction, confidence handling, and cross-view reconstruction evidence" />
       </section>
 
       <section className="chapter" id="s03">
         <div className="section-head"><p>03 — ANALYTICAL MODEL</p><h2>Analytical mechanism and kinematics</h2><span>机构组成与多视角运动</span></div>
-        <div className="figure-stack">
-          <EvidenceFigure src="media/design-logic.png" label="DESIGN LOGIC" caption="Actuation authority, paired spatial compatibility, and feasibility-aware multiscale search" />
-          <EvidenceFigure src="media/mechanism.png" label="MECHANISM" caption="Three-joint, five-DOF analytical topology and sequential closed-loop construction" />
-        </div>
-        <div className="mechanism-film">
-          <video src="media/web/optimized-mechanism.mp4" poster="media/web/optimized-mechanism.jpg" autoPlay muted loop playsInline controls preload="metadata" />
-          <div><span>MECHANISM MOTION · PHASE LOCKED</span><h3>Full-cycle analytical mechanism motion</h3><p>The orbit view reports the closed mechanism, endpoint trajectories, periodic L3 and L8 inputs, and Point-B motion over one coupled phase cycle.</p></div>
-        </div>
+        <EvidenceFigure src="media/mechanism.png" label="ANALYTICAL TOPOLOGY" caption="Three-joint, five-DOF mechanism and sequential closed-loop construction" />
         <div className="mechanism-notes">
           <div><b>I</b><h3>Root drive</h3><p>Periodic shoulder-root input initiates the closed-loop transmission.</p></div>
           <div><b>II–VI</b><h3>Linked closure</h3><p>Sequential planar loops coordinate the elbow and wrist assemblies.</p></div>
@@ -227,13 +215,12 @@ export default function Home() {
           <video src="media/web/optimization-convergence.mp4" poster="media/web/optimization-convergence.jpg" autoPlay muted loop playsInline controls preload="metadata" />
           <div><span>60-SECOND ITERATION RECORD</span><h3>PCA exploration and CMA-ES convergence</h3><p>The animation separates tested candidates from accepted improvements and uses fixed PCA axes throughout the 54-dimensional search record.</p></div>
         </div>
+        <div className="optimization-film variables-film">
+          <div><span>54-VARIABLE EVOLUTION</span><h3>Design variables mapped to mechanism response</h3><p>All design variables evolve with the accepted search history while the synchronized top view reports their kinematic consequence.</p></div>
+          <video src="media/web/design-variables.mp4" poster="media/web/design-variables.jpg" autoPlay muted loop playsInline controls preload="metadata" />
+        </div>
         <div className="optimization-stats">
           <div><b>6,507</b><span>CMA-ES generations</span></div><div><b>639</b><span>Split decisions</span></div><div><b>340</b><span>Executed partitions</span></div><div><b>51 / 51</b><span>Accepted SQP calls</span></div>
-        </div>
-        <div className="evidence-grid">
-          <EvidenceFigure src="media/optimization-evidence.png" label="COLD START" caption="Generation scores, SQP refinements, formal incumbent, and paired endpoint errors" />
-          <EvidenceFigure src="media/method-result.png" label="INTEGRATED EVIDENCE" caption="Final mechanism, fixed-axis PCA, partition hierarchy, split counts, and SQP gains" />
-          <EvidenceFigure src="media/iteration-atlas.png" label="DESIGN EVOLUTION" caption="Selected fixed-length mechanism states across the recorded search" />
         </div>
         <p className="method-note"><b>Method note.</b> Sensitivity screening partitions influential directions; regional CMA-ES explores correlated feasible regions; SQP refines candidates that pass every full-cycle closure and continuity check.</p>
       </section>
@@ -244,10 +231,7 @@ export default function Home() {
           <video src="media/web/optimized-mechanism.mp4" poster="media/web/optimized-mechanism.jpg" autoPlay muted loop playsInline controls preload="metadata" />
           <div className="result-caption"><span>PHASE-LOCKED KINEMATICS</span><h3>Generated wrist and wingtip trajectories versus biological targets</h3><p>The 60-second orbit follows one complete phase cycle while reporting absolute X–Z correspondence, periodic L3 and L8 lengths, and the Point-B path.</p><dl><div><dt>Tip RMSE</dt><dd>45.43 mm</dd></div><div><dt>Wrist RMSE</dt><dd>45.56 mm</dd></div><div><dt>Replay error</dt><dd>≤ 6.82 × 10⁻¹³</dd></div></dl></div>
         </div>
-        <div className="result-figures">
-          <EvidenceFigure src="media/optimized-actuation.png" label="EVENT-LEVEL MOTION" caption="Orthogonal mechanism views, paired trajectories, periodic inputs, and ten phase states" />
-          <EvidenceFigure src="media/strict-phase-fit.png" label="STRICT PHASE FIT" caption="Same-index generated and biological trajectories without cyclic shift or reversal" />
-        </div>
+        <div className="result-figures"><EvidenceFigure src="media/strict-phase-fit.png" label="STRICT PHASE FIT" caption="Same-index generated and biological trajectories without cyclic shift or reversal" /></div>
       </section>
 
       <section className="chapter paper" id="s06">

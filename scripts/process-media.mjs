@@ -16,6 +16,7 @@ const slots = [
   ["dlc-side", "source_media/02_dlc/side/source.mp4", "0.70"],
   ["mechanism-motion", "source_media/03_mechanism/source.mp4", "0.25"],
   ["optimization-convergence", "source_media/04_optimization/convergence/source.mp4", "30.00"],
+  ["design-variables", "source_media/04_optimization/variables/source.mp4", "30.00"],
   ["optimized-mechanism", "source_media/05_final_result/source.mp4", "30.00"],
 ];
 
@@ -24,7 +25,9 @@ function run(args) {
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
+const selected = new Set(process.argv.slice(2));
 for (const [name, relative, posterAt] of slots) {
+  if (selected.size && !selected.has(name)) continue;
   const input = join(root, relative);
   if (!existsSync(input)) {
     console.log(`SKIP ${name}: add ${relative}`);
