@@ -38,7 +38,7 @@ test("server-renders the complete supplementary archive", async () => {
   assert.equal((html.match(/media\/web\/optimized-mechanism\.mp4/g) ?? []).length, 1);
   assert.equal((html.match(/media\/web\/flight-side\.mp4/g) ?? []).length, 1);
   assert.match(html, /media\/web\/dlc-side\.mp4/);
-  assert.match(html, /Side-view marker tracking · slow motion/);
+  assert.match(html, /Side-view marker tracking/);
   assert.match(html, /media\/web\/design-variables\.mp4/);
   assert.match(html, /media\/web\/trajectory-front\.mp4/);
   assert.match(html, /media\/web\/trajectory-side\.mp4/);

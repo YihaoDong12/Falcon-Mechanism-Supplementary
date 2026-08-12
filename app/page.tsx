@@ -188,7 +188,7 @@ export default function Home() {
         <div className="section-head light"><p>02 — RECONSTRUCTION</p><h2>Markerless trajectory reconstruction</h2><span>DeepLabCut 标定与三维轨迹</span></div>
         <div className="split-media dlc-pair">
           <MediaCard kicker="DLC / CAMERA A · FRONT" title="Front-view marker tracking" src="media/web/dlc-front.mp4" poster="media/web/dlc-front.jpg" />
-          <MediaCard kicker="DLC / CAMERA B · SIDE · 0.4×" title="Side-view marker tracking · slow motion" src="media/web/dlc-side.mp4" poster="media/web/dlc-side.jpg" playbackRate={0.4} />
+          <MediaCard kicker="DLC / CAMERA B · SIDE" title="Side-view marker tracking" src="media/web/dlc-side.mp4" poster="media/web/dlc-side.jpg" playbackRate={0.2} />
         </div>
         <div className="curve-grid">
           <div className="curve-copy"><span>COUPLED PHASE COORDINATE</span><h3>Wrist and wingtip trajectories are reconstructed at the same wingbeat phase.</h3><p>A shared six-dimensional arc-length coordinate preserves the simultaneity of the paired biological observations.</p></div>
