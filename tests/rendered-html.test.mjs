@@ -40,6 +40,12 @@ test("server-renders the complete supplementary archive", async () => {
   assert.match(html, /media\/web\/dlc-side\.mp4/);
   assert.match(html, /Side-view marker tracking · slow motion/);
   assert.match(html, /media\/web\/design-variables\.mp4/);
+  assert.match(html, /media\/web\/trajectory-front\.mp4/);
+  assert.match(html, /media\/web\/trajectory-side\.mp4/);
+  assert.match(html, /media\/web\/trajectory-top\.mp4/);
+  assert.match(html, /media\/web\/trajectory-oblique\.mp4/);
+  assert.match(html, /1,074,004/);
+  assert.doesNotMatch(html, /Full-cycle feasible/);
   assert.match(html, /Tip RMSE · mm/);
   assert.match(html, /45\.56/);
   assert.match(html, /07 — REPRODUCIBILITY/);
@@ -70,5 +76,9 @@ test("ships the paper, scientific videos, and replay data", async () => {
     access(new URL("public/reproducibility/data/optimization_input.json", templateRoot)),
     access(new URL("public/reproducibility/data/inverse_rotated_strict_trajectories.csv", templateRoot)),
     access(new URL("public/reproducibility/data/sha256_manifest.json", templateRoot)),
+    access(new URL("public/media/web/trajectory-front.mp4", templateRoot)),
+    access(new URL("public/media/web/trajectory-side.mp4", templateRoot)),
+    access(new URL("public/media/web/trajectory-top.mp4", templateRoot)),
+    access(new URL("public/media/web/trajectory-oblique.mp4", templateRoot)),
   ]);
 });

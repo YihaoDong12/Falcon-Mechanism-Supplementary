@@ -173,7 +173,7 @@ export default function Home() {
       </section>
 
       <section className="paper-strip result-strip">
-        <b>4.67M</b><p>Candidates evaluated</p><b>24.61%</b><p>Full-cycle feasible</p><b>45.43</b><p>Tip RMSE · mm</p><b>45.56</b><p>Wrist RMSE · mm</p>
+        <b>4.67M</b><p>Candidates evaluated</p><b>1,074,004</b><p>Selected evaluation</p><b>45.43</b><p>Tip RMSE · mm</p><b>45.56</b><p>Wrist RMSE · mm</p>
       </section>
 
       <section className="chapter" id="s01">
@@ -192,7 +192,12 @@ export default function Home() {
         </div>
         <div className="curve-grid">
           <div className="curve-copy"><span>COUPLED PHASE COORDINATE</span><h3>Wrist and wingtip trajectories are reconstructed at the same wingbeat phase.</h3><p>A shared six-dimensional arc-length coordinate preserves the simultaneity of the paired biological observations.</p></div>
-          <AnimatedCurve mode="trajectory" />
+          <div className="trajectory-views">
+            <MediaCard kicker="ORTHOGRAPHIC / X–Z" title="Front view" src="media/web/trajectory-front.mp4" poster="media/web/trajectory-front.jpg" />
+            <MediaCard kicker="ORTHOGRAPHIC / Y–Z" title="Side view" src="media/web/trajectory-side.mp4" poster="media/web/trajectory-side.jpg" />
+            <MediaCard kicker="ORTHOGRAPHIC / X–Y" title="Top view" src="media/web/trajectory-top.mp4" poster="media/web/trajectory-top.jpg" />
+            <MediaCard kicker="ORTHOGRAPHIC / X–Y–Z" title="Oblique 3D view" src="media/web/trajectory-oblique.mp4" poster="media/web/trajectory-oblique.jpg" />
+          </div>
         </div>
       </section>
 
