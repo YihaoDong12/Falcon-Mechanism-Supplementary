@@ -165,10 +165,9 @@ export default function Home() {
           <p className="dek">Supplementary record for markerless flight reconstruction, the analytical three-joint five-DOF mechanism, and the verified strict cold-start CMA-ES + SQP result.</p>
           <div className="authors">Yihao Dong · Vladimir Parezanovic · Yusra Abdulrahman<br/><span>Khalifa University · Aerospace Engineering</span></div>
         </div>
-        <div className="hero-system" aria-label="Research workflow">
-          <span className="system-status"><i /> VERIFIED SUPPLEMENTARY RECORD</span>
-          <div className="system-orbit"><b>54D</b><span>coupled design space</span></div>
-          <ol><li><b>01</b> Observe</li><li><b>02</b> Reconstruct</li><li><b>03</b> Model</li><li><b>04</b> Optimize</li><li><b>05</b> Validate</li></ol>
+        <div className="hero-media">
+          <video src="media/web/flight-side.mp4" poster="media/web/flight-side.jpg" autoPlay muted loop playsInline controls />
+          <div className="hero-tag"><span>FIELD RECORDING · SLOW MOTION</span><b>High-speed lateral flight</b></div>
         </div>
         <a href="#s01" className="scroll-cue">SCROLL TO EXPLORE <span>↓</span></a>
       </section>
@@ -179,11 +178,10 @@ export default function Home() {
 
       <section className="chapter" id="s01">
         <div className="section-head"><p>01 — OBSERVATION</p><h2>Source flight recordings</h2><span>猎隼飞行原始记录</span></div>
-        <div className="split-media">
+        <div className="split-media single-media">
           <MediaCard kicker="CAMERA A · REAR" title="Rear take-off sequence" src="media/web/flight-rear.mp4" poster="media/web/flight-rear.jpg" />
-          <MediaCard kicker="CAMERA B · SIDE · 120 FPS SOURCE" title="High-speed lateral flight sequence" src="media/web/flight-side.mp4" poster="media/web/flight-side.jpg" />
         </div>
-        <p className="chapter-note">Synchronized camera views establish the spatial evidence base. The paired recordings expose sweep, extension, and distal-wing motion that cannot be recovered from one projection alone.</p>
+        <p className="chapter-note">The rear take-off sequence complements the lateral slow-motion record above, exposing sweep, extension, and distal-wing motion from a second projection.</p>
       </section>
 
       <section className="chapter ink" id="s02">
