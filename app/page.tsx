@@ -193,10 +193,10 @@ export default function Home() {
         <div className="curve-grid">
           <div className="curve-copy"><span>COUPLED PHASE COORDINATE</span><h3>Wrist and wingtip trajectories are reconstructed at the same wingbeat phase.</h3><p>A shared six-dimensional arc-length coordinate preserves the simultaneity of the paired biological observations.</p></div>
           <div className="trajectory-views">
-            <MediaCard kicker="ORTHOGRAPHIC / X–Z" title="Front view" src="media/web/trajectory-front.mp4" poster="media/web/trajectory-front.jpg" />
-            <MediaCard kicker="ORTHOGRAPHIC / Y–Z" title="Side view" src="media/web/trajectory-side.mp4" poster="media/web/trajectory-side.jpg" />
-            <MediaCard kicker="ORTHOGRAPHIC / X–Y" title="Top view" src="media/web/trajectory-top.mp4" poster="media/web/trajectory-top.jpg" />
-            <MediaCard kicker="ORTHOGRAPHIC / X–Y–Z" title="Oblique 3D view" src="media/web/trajectory-oblique.mp4" poster="media/web/trajectory-oblique.jpg" />
+            <MediaCard kicker="ORTHOGRAPHIC / X–Z" title="Front view" src="media/web/trajectory-front.mp4?v=2" poster="media/web/trajectory-front.jpg?v=2" />
+            <MediaCard kicker="ORTHOGRAPHIC / Y–Z" title="Side view" src="media/web/trajectory-side.mp4?v=2" poster="media/web/trajectory-side.jpg?v=2" />
+            <MediaCard kicker="ORTHOGRAPHIC / X–Y" title="Top view" src="media/web/trajectory-top.mp4?v=2" poster="media/web/trajectory-top.jpg?v=2" />
+            <MediaCard kicker="ORTHOGRAPHIC / X–Y–Z" title="Oblique 3D view" src="media/web/trajectory-oblique.mp4?v=2" poster="media/web/trajectory-oblique.jpg?v=2" />
           </div>
         </div>
       </section>
