@@ -19,20 +19,20 @@ mpl.rcParams.update({
     "font.size": 14,
     "axes.titlesize": 18,
     "axes.labelsize": 15,
-    "axes.edgecolor": "#667680",
-    "axes.labelcolor": "#1f2933",
-    "xtick.color": "#53636d",
-    "ytick.color": "#53636d",
-    "grid.color": "#dce3e6",
+    "axes.edgecolor": "#617681",
+    "axes.labelcolor": "#DCE7EB",
+    "xtick.color": "#9AAEB7",
+    "ytick.color": "#9AAEB7",
+    "grid.color": "#273C47",
     "grid.linewidth": 0.8,
     "legend.frameon": False,
     "animation.ffmpeg_path": str(FFMPEG),
 })
 
-TIP = "#E64B35"
-WRIST = "#3C5488"
-INK = "#1F2933"
-BG = "#FFFFFF"
+TIP = "#FF6B4A"
+WRIST = "#55D7E5"
+INK = "#DCE7EB"
+BG = "#08131C"
 
 
 def padded_limits(values, fraction=0.08):
@@ -58,13 +58,13 @@ def render_projection(df, name, title, x_name, y_name, x_label, y_label):
     xlim = padded_limits(np.r_[wx, tx])
     ylim = padded_limits(np.r_[wy, ty])
 
-    fig, ax = plt.subplots(figsize=(12.8, 7.2), dpi=100, facecolor=BG)
-    fig.subplots_adjust(left=0.10, right=0.96, bottom=0.13, top=0.88)
+    fig, ax = plt.subplots(figsize=(9.6, 9.6), dpi=100, facecolor=BG)
+    fig.subplots_adjust(left=0.12, right=0.94, bottom=0.10, top=0.86)
     style_2d(ax, x_label, y_label, xlim, ylim)
     fig.text(0.06, 0.93, title, color=INK, weight="bold", fontsize=18)
     fig.text(0.48, 0.93, "—  Wrist target", color=WRIST, weight="bold")
     fig.text(0.66, 0.93, "—  Wingtip target", color=TIP, weight="bold")
-    phase_text = fig.text(0.94, 0.93, "PHASE 000°", ha="right", color=INK, weight="bold")
+    phase_text = fig.text(0.94, 0.885, "PHASE 000°", ha="right", color=INK, weight="bold")
     wrist_line, = ax.plot([], [], color=WRIST, lw=3.0, label="Wrist target")
     tip_line, = ax.plot([], [], color=TIP, lw=3.4, label="Wingtip target")
     wrist_dot, = ax.plot([], [], "o", ms=7, color=WRIST)
@@ -93,9 +93,9 @@ def render_oblique(df):
     center = (all_points.min(axis=0) + all_points.max(axis=0)) / 2
     radius = np.ptp(all_points, axis=0).max() * 0.58
 
-    fig = plt.figure(figsize=(12.8, 7.2), dpi=100, facecolor=BG)
+    fig = plt.figure(figsize=(9.6, 9.6), dpi=100, facecolor=BG)
     ax = fig.add_subplot(111, projection="3d")
-    fig.subplots_adjust(left=0.02, right=0.96, bottom=0.06, top=0.90)
+    fig.subplots_adjust(left=0.02, right=0.96, bottom=0.05, top=0.86)
     ax.set_facecolor(BG)
     ax.set_proj_type("ortho")
     ax.view_init(elev=28, azim=-45)
