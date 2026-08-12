@@ -173,7 +173,7 @@ export default function Home() {
       </section>
 
       <section className="paper-strip result-strip">
-        <b>4.67M</b><p>Candidates evaluated</p><b>1,074,004</b><p>Selected evaluation</p><b>45.43</b><p>Tip RMSE · mm</p><b>45.56</b><p>Wrist RMSE · mm</p>
+        <b>4,669,502</b><p>Mechanisms evaluated</p><b>3,520,143</b><p>Rejected by full-cycle checks</p><b>45.43</b><p>Tip RMSE · mm</p><b>45.56</b><p>Wrist RMSE · mm</p>
       </section>
 
       <section className="chapter" id="s01">

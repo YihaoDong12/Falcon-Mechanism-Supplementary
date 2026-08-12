@@ -44,7 +44,10 @@ test("server-renders the complete supplementary archive", async () => {
   assert.match(html, /media\/web\/trajectory-side\.mp4/);
   assert.match(html, /media\/web\/trajectory-top\.mp4/);
   assert.match(html, /media\/web\/trajectory-oblique\.mp4/);
-  assert.match(html, /1,074,004/);
+  assert.match(html, /4,669,502/);
+  assert.match(html, /3,520,143/);
+  assert.match(html, /Rejected by full-cycle checks/);
+  assert.doesNotMatch(html, /Selected evaluation/);
   assert.doesNotMatch(html, /Full-cycle feasible/);
   assert.match(html, /Tip RMSE · mm/);
   assert.match(html, /45\.56/);
