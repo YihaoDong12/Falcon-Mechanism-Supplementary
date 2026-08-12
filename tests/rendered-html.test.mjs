@@ -39,7 +39,7 @@ test("server-renders the complete supplementary archive", async () => {
   assert.equal((html.match(/media\/web\/flight-side\.mp4/g) ?? []).length, 1);
   assert.match(html, /media\/web\/dlc-side\.mp4/);
   assert.match(html, /Side-view marker tracking/);
-  assert.match(html, /media\/web\/design-variables-v2\.mp4/);
+  assert.match(html, /media\/web\/design-variables-v3\.mp4/);
   assert.match(html, /media\/web\/trajectory-front\.mp4/);
   assert.match(html, /media\/web\/trajectory-side\.mp4/);
   assert.match(html, /media\/web\/trajectory-top\.mp4/);
@@ -62,7 +62,7 @@ test("ships the paper, scientific videos, and replay data", async () => {
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     stat(new URL("../public/media/manuscript.pdf", import.meta.url)),
     stat(new URL("../public/media/web/optimization-convergence.mp4", import.meta.url)),
-    stat(new URL("../public/media/web/design-variables-v2.mp4", import.meta.url)),
+    stat(new URL("../public/media/web/design-variables-v3.mp4", import.meta.url)),
     stat(new URL("../public/media/web/optimized-mechanism.mp4", import.meta.url)),
   ]);
 

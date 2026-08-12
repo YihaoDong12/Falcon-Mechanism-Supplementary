@@ -220,7 +220,7 @@ export default function Home() {
         </div>
         <div className="optimization-film variables-film">
           <div><span>54-VARIABLE EVOLUTION</span><h3>Design variables mapped to mechanism response</h3><p>All design variables evolve with the accepted search history while the synchronized top view reports their kinematic consequence.</p></div>
-          <video src="media/web/design-variables-v2.mp4" poster="media/web/design-variables-v2.jpg" autoPlay muted loop playsInline controls preload="metadata" />
+          <video src="media/web/design-variables-v3.mp4" poster="media/web/design-variables-v3.jpg" autoPlay muted loop playsInline controls preload="metadata" />
         </div>
         <div className="optimization-stats">
           <div><b>6,507</b><span>CMA-ES generations</span></div><div><b>639</b><span>Split decisions</span></div><div><b>340</b><span>Executed partitions</span></div><div><b>51 / 51</b><span>Accepted SQP calls</span></div>
