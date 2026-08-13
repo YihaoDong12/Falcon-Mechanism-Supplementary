@@ -31,8 +31,8 @@ test("server-renders the complete supplementary archive", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Three-Joint, Five-DOF Falcon-Inspired Flapping Mechanism · Supplementary Materials<\/title>/i);
-  assert.match(html, /UPDATED 12 AUG 2026/);
+  assert.match(html, /<title>Trajectory Synthesis of a Three-Joint, Five-DOF Falcon-Inspired Flapping Mechanism by Sensitivity-Partitioned CMA-ES and SQP<\/title>/i);
+  assert.match(html, /UPDATED 13 AUG 2026/);
   assert.match(html, /media\/web\/optimization-convergence\.mp4/);
   assert.match(html, /media\/web\/optimized-mechanism\.mp4/);
   assert.equal((html.match(/media\/web\/optimized-mechanism\.mp4/g) ?? []).length, 1);
@@ -46,13 +46,19 @@ test("server-renders the complete supplementary archive", async () => {
   assert.match(html, /media\/web\/trajectory-oblique\.mp4/);
   assert.match(html, /4,669,502/);
   assert.match(html, /3,520,143/);
+  assert.match(html, /39\.04/);
+  assert.match(html, /39\.60/);
+  assert.match(html, /39\.32 mm/);
+  assert.match(html, /13\.56%/);
+  assert.match(html, /media\/periodic-l6-extension\.png/);
   assert.match(html, /Rejected by full-cycle checks/);
   assert.doesNotMatch(html, /Selected evaluation/);
   assert.doesNotMatch(html, /Full-cycle feasible/);
-  assert.match(html, /Tip RMSE · mm/);
-  assert.match(html, /45\.56/);
+  assert.match(html, /Extended tip RMSE · mm/);
+  assert.match(html, /Extended wrist RMSE · mm/);
   assert.match(html, /07 — REPRODUCIBILITY/);
   assert.match(html, /reproducibility\/data\/cma_generations\.csv/);
+  assert.match(html, /reproducibility\/l6_extension\/results\/phasewise_replay\.csv/);
   assert.doesNotMatch(html, /codex-preview|loading skeleton/i);
 });
 
@@ -66,13 +72,13 @@ test("ships the paper, scientific videos, and replay data", async () => {
     stat(new URL("../public/media/web/optimized-mechanism.mp4", import.meta.url)),
   ]);
 
-  assert.ok(paperInfo.size > 10_000_000);
+  assert.ok(paperInfo.size > 20_000_000);
   assert.ok(optimizationVideoInfo.size > 1_000_000);
   assert.ok(variablesVideoInfo.size > 1_000_000);
   assert.ok(resultVideoInfo.size > 1_000_000);
   assert.match(page, /evaluation 1,074,004/);
   assert.match(page, /6,507 generations/);
-  assert.match(layout, /CMA-ES \+ SQP optimization evidence/);
+  assert.match(layout, /periodic-L6 extension/);
 
   await Promise.all([
     access(new URL("public/reproducibility/model/fourbar3d_python.py", templateRoot)),
@@ -83,5 +89,10 @@ test("ships the paper, scientific videos, and replay data", async () => {
     access(new URL("public/media/web/trajectory-side.mp4", templateRoot)),
     access(new URL("public/media/web/trajectory-top.mp4", templateRoot)),
     access(new URL("public/media/web/trajectory-oblique.mp4", templateRoot)),
+    access(new URL("public/media/periodic-l6-extension.png", templateRoot)),
+    access(new URL("public/reproducibility/l6_extension/model/fourbar_optimization.py", templateRoot)),
+    access(new URL("public/reproducibility/l6_extension/input/optimization_input.json", templateRoot)),
+    access(new URL("public/reproducibility/l6_extension/results/phasewise_replay.csv", templateRoot)),
+    access(new URL("public/reproducibility/l6_extension/results/independent_replay_audit.json", templateRoot)),
   ]);
 });

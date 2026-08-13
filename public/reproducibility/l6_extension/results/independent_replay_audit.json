@@ -1,0 +1,58 @@
+{
+  "candidate": "02_EXTENSION_L6_3H",
+  "rod": "L6",
+  "seed": 20260885,
+  "mode": "l3_l8_l6_periodic3_l32_derived",
+  "status": "completed",
+  "exit_code": 0,
+  "run_id": "20260811T113325Z_bc13037c5f",
+  "best_evaluation": 1234750,
+  "best_stage": "slsqp",
+  "best_round": 17,
+  "best_region_id": 207,
+  "total_formal_evaluations": 1296640,
+  "progress_candidate_count": 1296659,
+  "score_mm": 39.687851976419395,
+  "p64_bottleneck_mm": 39.38175453034171,
+  "stutter_penalty_mm": 0.30609744607768885,
+  "tip_rmse_mm": 39.03694542943551,
+  "wrist_rmse_mm": 39.60263562887867,
+  "combined_rmse_mm": 39.32080783258691,
+  "tip_peak_mm": 72.5641437633954,
+  "wrist_peak_mm": 59.49439508118184,
+  "tip_raw_cycle_c1_seam_ratio": 0.10194826743316011,
+  "wrist_raw_cycle_c1_seam_ratio": 0.18592849413828902,
+  "both_below_25_mm": false,
+  "pose_from_event_actual_x": {
+    "Tx_mm": -119.13681512403542,
+    "Ty_mm": -99.79828320149798,
+    "Tz_mm": 27.839374130680653,
+    "Rx_rad": -0.050362804959799584,
+    "Ry_rad": 0.0006011701188556318,
+    "Rz_rad": -0.2483628613372946
+  },
+  "process_health": {
+    "completed": true,
+    "exit_zero": true,
+    "manifest_complete": true
+  },
+  "replay_delta": {
+    "score_mm": 3.552713678800501e-14,
+    "tip_rmse_mm": 2.6290081223123707e-13,
+    "wrist_rmse_mm": 4.973799150320701e-14,
+    "combined_rmse_mm": 1.0658141036401503e-13
+  },
+  "audit": {
+    "maximum_bound_violation_mm_or_rad": 0.0,
+    "b_phase_origin_abs_z_mm": 1.201816424156732e-14,
+    "l32_derived_identity_max_abs_mm": 0.0,
+    "selected_rod_phasewise_identity_max_abs_mm": 5.684341886080802e-14,
+    "strict_same_index_flag": 1.0,
+    "event_vs_final_checkpoint_x_max_abs": 0.0,
+    "replay_vs_final_checkpoint_tip_max_abs_mm": 2.3305801732931286e-12,
+    "replay_vs_final_checkpoint_wrist_max_abs_mm": 0.0
+  },
+  "display_label": "L6 fresh +3 h",
+  "campaign_group": "deep_extension",
+  "budget_minutes": 180
+}

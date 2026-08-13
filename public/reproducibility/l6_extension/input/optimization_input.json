@@ -1,0 +1,778 @@
+{
+  "document": {
+    "version": "2.0.0",
+    "generated_at_utc": "2026-08-11T11:33:22.459232+00:00",
+    "purpose": "3-hour fresh-state deep optimization contract for selected L6"
+  },
+  "target": {
+    "sample_count": 76,
+    "phase_index": "0..75",
+    "source_csv": "input/Length_normalized_target_initialized_equal_arc_76_mm.csv",
+    "source_metadata": "input/Length_normalized_target_initialized_equal_arc_76_metadata.json",
+    "derived_target_csv": "input/Length_normalized_target_initialized_equal_arc_76_mm.csv",
+    "derived_target_metadata": "input/Length_normalized_target_initialized_equal_arc_76_metadata.json"
+  },
+  "rmse": {
+    "correspondence_mode": "strict_initialized_equal_arc_index",
+    "tip_wrist_weighting": "equal",
+    "objective": "initialized_equal_arc_bottleneck_p64_with_stutter"
+  },
+  "mechanism": {
+    "topology": "frozen formal initialized-equal-arc topology",
+    "periodic_lengths": {
+      "L3": "third-order Fourier",
+      "L8": "third-order Fourier",
+      "L6": "third-order Fourier (only added rod)"
+    },
+    "derived_identity": "L32(t)=L3(t)-L31+2",
+    "phase_origin": "first phase has downward Bz=0 crossing"
+  },
+  "design_space": {
+    "stored_coordinate_count": 61,
+    "independent_search_dimension": 60,
+    "derived_stored_coordinates": [
+      "B_Z_C3c"
+    ],
+    "variables": [
+      {
+        "index": 1,
+        "name": "L2",
+        "initial": 69.0,
+        "anchor": 133.96052794821026,
+        "lower": 10.0,
+        "upper": 350.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 2,
+        "name": "L31",
+        "initial": 42.0,
+        "anchor": 90.96606219070381,
+        "lower": 10.0,
+        "upper": 150.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 3,
+        "name": "L4",
+        "initial": 41.0,
+        "anchor": 66.47606080231344,
+        "lower": 10.0,
+        "upper": 100.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 4,
+        "name": "L41",
+        "initial": 23.0,
+        "anchor": 26.572577105880615,
+        "lower": 5.0,
+        "upper": 50.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 5,
+        "name": "L5",
+        "initial": 165.0,
+        "anchor": 205.04819051375753,
+        "lower": 100.0,
+        "upper": 340.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 6,
+        "name": "L51",
+        "initial": 32.0,
+        "anchor": 26.106592943479786,
+        "lower": 10.0,
+        "upper": 50.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 7,
+        "name": "L52",
+        "initial": 32.0,
+        "anchor": 22.964012895822624,
+        "lower": 10.0,
+        "upper": 50.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 8,
+        "name": "L7",
+        "initial": 255.0,
+        "anchor": 239.32221967128817,
+        "lower": 200.0,
+        "upper": 300.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 9,
+        "name": "L9",
+        "initial": 32.0,
+        "anchor": 58.25447136465616,
+        "lower": 10.0,
+        "upper": 100.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 10,
+        "name": "L10",
+        "initial": 30.0,
+        "anchor": 19.407490691829622,
+        "lower": 10.0,
+        "upper": 50.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 11,
+        "name": "L11",
+        "initial": 15.0,
+        "anchor": 37.23433233328705,
+        "lower": 10.0,
+        "upper": 100.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 12,
+        "name": "L12",
+        "initial": 15.0,
+        "anchor": 10.595146052940336,
+        "lower": 5.0,
+        "upper": 50.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 13,
+        "name": "L13",
+        "initial": 15.0,
+        "anchor": 34.84316301917477,
+        "lower": 8.0,
+        "upper": 100.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 14,
+        "name": "LRod",
+        "initial": 50.0,
+        "anchor": 40.74163865219117,
+        "lower": 10.0,
+        "upper": 150.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 15,
+        "name": "L14",
+        "initial": 15.0,
+        "anchor": 26.38288824690784,
+        "lower": 10.0,
+        "upper": 50.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 16,
+        "name": "L15",
+        "initial": 10.0,
+        "anchor": 41.952885133548534,
+        "lower": 10.0,
+        "upper": 150.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 17,
+        "name": "L17",
+        "initial": 14.0,
+        "anchor": 71.84360002437005,
+        "lower": 8.0,
+        "upper": 180.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 18,
+        "name": "L61",
+        "initial": 236.0,
+        "anchor": 147.42489711192044,
+        "lower": 100.0,
+        "upper": 250.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 19,
+        "name": "Lf2",
+        "initial": 277.0,
+        "anchor": 372.4168998510976,
+        "lower": 180.0,
+        "upper": 380.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 20,
+        "name": "L_down",
+        "initial": 15.0,
+        "anchor": 31.043345838282193,
+        "lower": 8.0,
+        "upper": 130.0,
+        "unit": "mm",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 21,
+        "name": "theta18_deg",
+        "initial": 120.0,
+        "anchor": 102.33560909497527,
+        "lower": 30.0,
+        "upper": 150.0,
+        "unit": "deg",
+        "group": "static_geometry",
+        "role": "independent_search"
+      },
+      {
+        "index": 22,
+        "name": "B_Y_C0",
+        "initial": 10.0,
+        "anchor": 35.7476866097027,
+        "lower": -130.0,
+        "upper": 80.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 23,
+        "name": "B_Y_C1c",
+        "initial": -50.0,
+        "anchor": 30.3285283274927,
+        "lower": -180.0,
+        "upper": 180.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 24,
+        "name": "B_Y_C1s",
+        "initial": 0.0,
+        "anchor": 2.0341007640913134,
+        "lower": -180.0,
+        "upper": 180.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 25,
+        "name": "B_Y_C2c",
+        "initial": 0.0,
+        "anchor": 5.242894958671273,
+        "lower": -80.0,
+        "upper": 80.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 26,
+        "name": "B_Y_C2s",
+        "initial": 0.0,
+        "anchor": -0.25012578128921625,
+        "lower": -80.0,
+        "upper": 80.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 27,
+        "name": "B_Z_C1c",
+        "initial": 0.0,
+        "anchor": 0.5140071917293281,
+        "lower": -180.0,
+        "upper": 180.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 28,
+        "name": "B_Z_C1s",
+        "initial": -50.0,
+        "anchor": -32.19764517690273,
+        "lower": -180.0,
+        "upper": 180.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 29,
+        "name": "B_Z_C2c",
+        "initial": 0.0,
+        "anchor": 8.236215288012355,
+        "lower": -80.0,
+        "upper": 80.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 30,
+        "name": "B_Z_C2s",
+        "initial": 0.0,
+        "anchor": 2.22397017909699,
+        "lower": -80.0,
+        "upper": 80.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 31,
+        "name": "B_CenterX",
+        "initial": 30.0,
+        "anchor": 56.19113208354884,
+        "lower": -120.0,
+        "upper": 300.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 32,
+        "name": "B_Z_C0",
+        "initial": 0.0,
+        "anchor": -8.58273115299793,
+        "lower": -60.0,
+        "upper": 40.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 33,
+        "name": "B_Z_C3c",
+        "initial": 0.0,
+        "anchor": -0.1674913267441723,
+        "lower": -45.0,
+        "upper": 45.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "derived_stored"
+      },
+      {
+        "index": 34,
+        "name": "B_Z_C3s",
+        "initial": 0.0,
+        "anchor": 0.46088593183710597,
+        "lower": -45.0,
+        "upper": 45.0,
+        "unit": "mm",
+        "group": "input_curve",
+        "role": "independent_search"
+      },
+      {
+        "index": 35,
+        "name": "L3_C0",
+        "initial": 141.0,
+        "anchor": 255.70813576844185,
+        "lower": 60.0,
+        "upper": 420.0,
+        "unit": "mm",
+        "group": "periodic_L3",
+        "role": "independent_search"
+      },
+      {
+        "index": 36,
+        "name": "L3_C1c",
+        "initial": 0.0,
+        "anchor": -2.393683286591788,
+        "lower": -55.0,
+        "upper": 55.0,
+        "unit": "mm",
+        "group": "periodic_L3",
+        "role": "independent_search"
+      },
+      {
+        "index": 37,
+        "name": "L3_C1s",
+        "initial": 0.0,
+        "anchor": -7.829993213375161,
+        "lower": -55.0,
+        "upper": 55.0,
+        "unit": "mm",
+        "group": "periodic_L3",
+        "role": "independent_search"
+      },
+      {
+        "index": 38,
+        "name": "L3_C2c",
+        "initial": 0.0,
+        "anchor": 1.4947214100720956,
+        "lower": -35.0,
+        "upper": 35.0,
+        "unit": "mm",
+        "group": "periodic_L3",
+        "role": "independent_search"
+      },
+      {
+        "index": 39,
+        "name": "L3_C2s",
+        "initial": 0.0,
+        "anchor": -0.022629945104718274,
+        "lower": -35.0,
+        "upper": 35.0,
+        "unit": "mm",
+        "group": "periodic_L3",
+        "role": "independent_search"
+      },
+      {
+        "index": 40,
+        "name": "L3_C3c",
+        "initial": 0.0,
+        "anchor": 1.0132941915209592,
+        "lower": -20.0,
+        "upper": 20.0,
+        "unit": "mm",
+        "group": "periodic_L3",
+        "role": "independent_search"
+      },
+      {
+        "index": 41,
+        "name": "L3_C3s",
+        "initial": 0.0,
+        "anchor": 0.7250428275855825,
+        "lower": -20.0,
+        "upper": 20.0,
+        "unit": "mm",
+        "group": "periodic_L3",
+        "role": "independent_search"
+      },
+      {
+        "index": 42,
+        "name": "L8_C0",
+        "initial": 251.0,
+        "anchor": 218.4043531800978,
+        "lower": 200.0,
+        "upper": 300.0,
+        "unit": "mm",
+        "group": "periodic_L8",
+        "role": "independent_search"
+      },
+      {
+        "index": 43,
+        "name": "L8_C1c",
+        "initial": 0.0,
+        "anchor": -16.192831766796594,
+        "lower": -55.0,
+        "upper": 55.0,
+        "unit": "mm",
+        "group": "periodic_L8",
+        "role": "independent_search"
+      },
+      {
+        "index": 44,
+        "name": "L8_C1s",
+        "initial": 0.0,
+        "anchor": 3.6865598801224593,
+        "lower": -55.0,
+        "upper": 55.0,
+        "unit": "mm",
+        "group": "periodic_L8",
+        "role": "independent_search"
+      },
+      {
+        "index": 45,
+        "name": "L8_C2c",
+        "initial": 0.0,
+        "anchor": -1.077988170689956,
+        "lower": -35.0,
+        "upper": 35.0,
+        "unit": "mm",
+        "group": "periodic_L8",
+        "role": "independent_search"
+      },
+      {
+        "index": 46,
+        "name": "L8_C2s",
+        "initial": 0.0,
+        "anchor": -2.8399372303638017,
+        "lower": -35.0,
+        "upper": 35.0,
+        "unit": "mm",
+        "group": "periodic_L8",
+        "role": "independent_search"
+      },
+      {
+        "index": 47,
+        "name": "L8_C3c",
+        "initial": 0.0,
+        "anchor": 0.10462706774413633,
+        "lower": -20.0,
+        "upper": 20.0,
+        "unit": "mm",
+        "group": "periodic_L8",
+        "role": "independent_search"
+      },
+      {
+        "index": 48,
+        "name": "L8_C3s",
+        "initial": 0.0,
+        "anchor": -2.0284357492981115,
+        "lower": -20.0,
+        "upper": 20.0,
+        "unit": "mm",
+        "group": "periodic_L8",
+        "role": "independent_search"
+      },
+      {
+        "index": 49,
+        "name": "L6_C0",
+        "initial": 257.0,
+        "anchor": 246.5266156571311,
+        "lower": 200.0,
+        "upper": 300.0,
+        "unit": "mm",
+        "group": "periodic_L6",
+        "role": "independent_search"
+      },
+      {
+        "index": 50,
+        "name": "L6_C1c",
+        "initial": 0.0,
+        "anchor": -0.22984207161921688,
+        "lower": -55.0,
+        "upper": 55.0,
+        "unit": "mm",
+        "group": "periodic_L6",
+        "role": "independent_search"
+      },
+      {
+        "index": 51,
+        "name": "L6_C1s",
+        "initial": 0.0,
+        "anchor": -0.17552723541562187,
+        "lower": -55.0,
+        "upper": 55.0,
+        "unit": "mm",
+        "group": "periodic_L6",
+        "role": "independent_search"
+      },
+      {
+        "index": 52,
+        "name": "L6_C2c",
+        "initial": 0.0,
+        "anchor": 0.007625850053976535,
+        "lower": -35.0,
+        "upper": 35.0,
+        "unit": "mm",
+        "group": "periodic_L6",
+        "role": "independent_search"
+      },
+      {
+        "index": 53,
+        "name": "L6_C2s",
+        "initial": 0.0,
+        "anchor": -0.01148711003063596,
+        "lower": -35.0,
+        "upper": 35.0,
+        "unit": "mm",
+        "group": "periodic_L6",
+        "role": "independent_search"
+      },
+      {
+        "index": 54,
+        "name": "L6_C3c",
+        "initial": 0.0,
+        "anchor": 0.05055030182033704,
+        "lower": -20.0,
+        "upper": 20.0,
+        "unit": "mm",
+        "group": "periodic_L6",
+        "role": "independent_search"
+      },
+      {
+        "index": 55,
+        "name": "L6_C3s",
+        "initial": 0.0,
+        "anchor": 0.03966188445286889,
+        "lower": -20.0,
+        "upper": 20.0,
+        "unit": "mm",
+        "group": "periodic_L6",
+        "role": "independent_search"
+      },
+      {
+        "index": 56,
+        "name": "Target_Tx_mm",
+        "initial": 0.0,
+        "anchor": -120.6778841274321,
+        "lower": -600.0,
+        "upper": 200.0,
+        "unit": "mm",
+        "group": "target_pose",
+        "role": "independent_search"
+      },
+      {
+        "index": 57,
+        "name": "Target_Ty_mm",
+        "initial": 0.0,
+        "anchor": -100.0,
+        "lower": -100.0,
+        "upper": 200.0,
+        "unit": "mm",
+        "group": "target_pose",
+        "role": "independent_search"
+      },
+      {
+        "index": 58,
+        "name": "Target_Tz_mm",
+        "initial": 0.0,
+        "anchor": 29.7694460244507,
+        "lower": -350.0,
+        "upper": 150.0,
+        "unit": "mm",
+        "group": "target_pose",
+        "role": "independent_search"
+      },
+      {
+        "index": 59,
+        "name": "Target_Rx_rad",
+        "initial": 0.0,
+        "anchor": -0.04754016381879525,
+        "lower": -0.25,
+        "upper": 0.25,
+        "unit": "rad",
+        "group": "target_pose",
+        "role": "independent_search"
+      },
+      {
+        "index": 60,
+        "name": "Target_Ry_rad",
+        "initial": 0.0,
+        "anchor": 0.015715702981628943,
+        "lower": -0.25,
+        "upper": 0.25,
+        "unit": "rad",
+        "group": "target_pose",
+        "role": "independent_search"
+      },
+      {
+        "index": 61,
+        "name": "Target_Rz_rad",
+        "initial": 0.0,
+        "anchor": -0.25,
+        "lower": -0.25,
+        "upper": 0.25,
+        "unit": "rad",
+        "group": "target_pose",
+        "role": "independent_search"
+      }
+    ]
+  },
+  "optimizer": {
+    "default": {
+      "population": 192,
+      "generations_per_region": 10,
+      "regions_per_round": 12,
+      "sigma0": 0.04,
+      "refinement_method": "slsqp",
+      "sqp_active_dimensions": 60,
+      "objective_mode": "initialized_equal_arc_bottleneck_p64_with_stutter",
+      "search_scope": "all",
+      "target_pose_mode": "shared_rotation_translation6",
+      "periodic_length_mode": "l3_l8_l6_periodic3_l32_derived",
+      "b_curve_mode": "fourier_z3_c0",
+      "static_bound_mode": "broad_all54_20260802",
+      "start_checkpoint_path": "C:\\Users\\Dakota\\OneDrive - ku.ac.ae\\Study\\FlapingWing\\Python\\Deeplearning\\最终方案\\active_runs\\20260811_104648_periodic_rod_30m_screen_then_2h\\deep\\02_EXTENSION_L6_3H\\anchor\\l6_periodic_zero_harmonic_design_anchor.npz"
+    },
+    "architecture": [
+      "design-coordinate anchor",
+      "fresh feasible pool",
+      "fresh partition tree",
+      "fresh CMA-ES state",
+      "fresh SLSQP calls"
+    ]
+  },
+  "anchor": {
+    "role": "design_coordinates_only",
+    "design_coordinate_source": "parent_deep_formal_best_design_coordinates_only",
+    "path": "C:\\Users\\Dakota\\OneDrive - ku.ac.ae\\Study\\FlapingWing\\Python\\Deeplearning\\最终方案\\active_runs\\20260811_104648_periodic_rod_30m_screen_then_2h\\deep\\02_EXTENSION_L6_3H\\anchor\\l6_periodic_zero_harmonic_design_anchor.npz",
+    "sha256": "6A52DBC2DAB15BF51AFEAFAADB6142F5E39DFB2827CB512127CCB6BA621E3C50",
+    "source_formal_evaluation": 714677,
+    "transferred_fields": [
+      "x",
+      "variable_names"
+    ],
+    "added_rod_initialization": "coordinates copied from the parent stage formal best",
+    "inherited_population": false,
+    "inherited_cma_covariance": false,
+    "inherited_evolution_paths": false,
+    "inherited_partition_tree": false,
+    "inherited_feasible_pool": false,
+    "inherited_slsqp_state": false
+  },
+  "frozen_sources_at_generation": [
+    {
+      "path": "C:\\Users\\Dakota\\OneDrive - ku.ac.ae\\Study\\FlapingWing\\Python\\Deeplearning\\最终方案\\active_runs\\20260811_104648_periodic_rod_30m_screen_then_2h\\deep\\02_EXTENSION_L6_3H\\model\\formal_initialized_equal_arc_periodic_screen_v1\\fourbar3d_python.py",
+      "sha256": "E59E0A681AA5087B4876E08F6BCFD1E7B78E277E47E72CBF13A2718B0E31B54F"
+    },
+    {
+      "path": "C:\\Users\\Dakota\\OneDrive - ku.ac.ae\\Study\\FlapingWing\\Python\\Deeplearning\\最终方案\\active_runs\\20260811_104648_periodic_rod_30m_screen_then_2h\\deep\\02_EXTENSION_L6_3H\\model\\formal_initialized_equal_arc_periodic_screen_v1\\fourbar_optimization.py",
+      "sha256": "88C2BF3225727F24FCC039576F208B4FE73F6A425C41E7A7665F3C956CB9E19A"
+    },
+    {
+      "path": "C:\\Users\\Dakota\\OneDrive - ku.ac.ae\\Study\\FlapingWing\\Python\\Deeplearning\\最终方案\\active_runs\\20260811_104648_periodic_rod_30m_screen_then_2h\\deep\\02_EXTENSION_L6_3H\\input\\rmse25_matlab_data.mat",
+      "sha256": "F062F3DDDDC06103AD5BE6AA7A5396D0ADAF01AED0457D8B5699D2879B025D8B"
+    },
+    {
+      "path": "C:\\Users\\Dakota\\OneDrive - ku.ac.ae\\Study\\FlapingWing\\Python\\Deeplearning\\最终方案\\active_runs\\20260811_104648_periodic_rod_30m_screen_then_2h\\deep\\02_EXTENSION_L6_3H\\input\\Length_normalized_target_initialized_equal_arc_76_mm.csv",
+      "sha256": "15F5C3D71BB92DDEFC4CCD316C3DC940165A51AC8176D251C391D68A62D613DD"
+    },
+    {
+      "path": "C:\\Users\\Dakota\\OneDrive - ku.ac.ae\\Study\\FlapingWing\\Python\\Deeplearning\\最终方案\\active_runs\\20260811_104648_periodic_rod_30m_screen_then_2h\\deep\\02_EXTENSION_L6_3H\\input\\Length_normalized_target_initialized_equal_arc_76_metadata.json",
+      "sha256": "E4FC6FC58A096A446AC658DB577182050BA2158575C67F79A516FA74DD8E97E0"
+    },
+    {
+      "path": "C:\\Users\\Dakota\\OneDrive - ku.ac.ae\\Study\\FlapingWing\\Python\\Deeplearning\\最终方案\\active_runs\\20260811_104648_periodic_rod_30m_screen_then_2h\\deep\\02_EXTENSION_L6_3H\\input\\Length_normalized_target_documentation_with_initialization.xlsx",
+      "sha256": "F0E73E3E5A17CDB9D71D27C4B703CEA93C209814F3288B0EF5A758E71B6D045E"
+    }
+  ]
+}

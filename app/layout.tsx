@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const title = "Three-Joint, Five-DOF Falcon-Inspired Flapping Mechanism · Supplementary Materials";
-const description = "Flight reconstruction, phase-locked mechanism motion, strict cold-start CMA-ES + SQP optimization evidence, paper, code, and source data.";
+const title = "Trajectory Synthesis of a Three-Joint, Five-DOF Falcon-Inspired Flapping Mechanism by Sensitivity-Partitioned CMA-ES and SQP";
+const description = "Confidence-aware flight reconstruction, sensitivity-partitioned CMA-ES and SQP, event-level replay, periodic-L6 extension, code, and source data.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yihaodong12.github.io/Falcon-Mechanism-Supplementary/"),

@@ -160,9 +160,9 @@ export default function Home() {
       <section className="hero" id="top">
         <div className="hero-ghost">FALCON</div>
         <div className="hero-copy">
-          <p className="eyebrow">SUPPLEMENTARY MATERIALS · JCDE · UPDATED 12 AUG 2026</p>
-          <h1>Trajectory Synthesis of a<br/><em>Falcon-Inspired</em><br/>Flapping Mechanism</h1>
-          <p className="dek">Supplementary record for markerless flight reconstruction, the analytical three-joint five-DOF mechanism, and the verified strict cold-start CMA-ES + SQP result.</p>
+          <p className="eyebrow">SUPPLEMENTARY MATERIALS · JCDE · UPDATED 13 AUG 2026</p>
+          <h1>Trajectory Synthesis of a<br/><em>Three-Joint, Five-DOF</em><br/>Falcon-Inspired Flapping Mechanism</h1>
+          <p className="dek">By sensitivity-partitioned CMA-ES and SQP. This record links confidence-aware markerless flight reconstruction, analytical closed-loop synthesis, event-level replay, and the periodic-L6 extension reported in the updated manuscript.</p>
           <div className="authors">Yihao Dong · Vladimir Parezanovic · Yusra Abdulrahman<br/><span>Khalifa University · Aerospace Engineering</span></div>
         </div>
         <div className="hero-media">
@@ -173,7 +173,7 @@ export default function Home() {
       </section>
 
       <section className="paper-strip result-strip">
-        <b>4,669,502</b><p>Mechanisms evaluated</p><b>3,520,143</b><p>Rejected by full-cycle checks</p><b>45.43</b><p>Tip RMSE · mm</p><b>45.56</b><p>Wrist RMSE · mm</p>
+        <b>4,669,502</b><p>Mechanisms evaluated</p><b>3,520,143</b><p>Rejected by full-cycle checks</p><b>39.04</b><p>Extended tip RMSE · mm</p><b>39.60</b><p>Extended wrist RMSE · mm</p>
       </section>
 
       <section className="chapter" id="s01">
@@ -229,19 +229,22 @@ export default function Home() {
       </section>
 
       <section className="chapter result" id="s05">
-        <div className="section-head light"><p>05 — SYNTHESIZED MOTION</p><h2>Verified event-level kinematics</h2><span>优化机构与目标轨迹对比</span></div>
+        <div className="section-head light"><p>05 — SYNTHESIZED MOTION</p><h2>Verified kinematics and periodic-L6 extension</h2><span>基础事件与扩展结果</span></div>
         <div className="result-stage">
           <video src="media/web/optimized-mechanism.mp4" poster="media/web/optimized-mechanism.jpg" autoPlay muted loop playsInline controls preload="metadata" />
-          <div className="result-caption"><span>PHASE-LOCKED KINEMATICS</span><h3>Generated wrist and wingtip trajectories versus biological targets</h3><p>The 60-second orbit follows one complete phase cycle while reporting absolute X–Z correspondence, periodic L3 and L8 lengths, and the Point-B path.</p><dl><div><dt>Tip RMSE</dt><dd>45.43 mm</dd></div><div><dt>Wrist RMSE</dt><dd>45.56 mm</dd></div><div><dt>Replay error</dt><dd>≤ 6.82 × 10⁻¹³</dd></div></dl></div>
+          <div className="result-caption"><span>54D VERIFIED BASE EVENT</span><h3>Generated wrist and wingtip trajectories versus biological targets</h3><p>The 60-second orbit records the replayable 54-dimensional event before the additional periodic-link study. It reports the Point-B path and the periodic L3 and L8 inputs over one complete phase cycle.</p><dl><div><dt>Tip RMSE</dt><dd>45.43 mm</dd></div><div><dt>Wrist RMSE</dt><dd>45.56 mm</dd></div><div><dt>Replay error</dt><dd>≤ 6.82 × 10⁻¹³</dd></div></dl></div>
         </div>
-        <div className="result-figures"><EvidenceFigure src="media/strict-phase-fit.png" label="STRICT PHASE FIT" caption="Same-index generated and biological trajectories without cyclic shift or reversal" /></div>
+        <div className="extension-result">
+          <div className="extension-summary"><div><span>PERIODIC-L6 EXTENSION</span><h3>A short additional stroke reduces the coupled residual.</h3><p>Equal-budget screening identified L6 as the strongest of five tested single-link extensions. Joint reoptimization reduced the coupled RMSE from 45.49 to 39.32 mm while preserving continuous full-cycle assembly. The gain belongs to the enlarged design space rather than to L6 in isolation.</p></div><dl><div><dt>Coupled RMSE</dt><dd>39.32 mm</dd></div><div><dt>Reduction</dt><dd>13.56%</dd></div><div><dt>L6 range</dt><dd>0.85 mm</dd></div><div><dt>Selected links</dt><dd>1 of 5</dd></div></dl></div>
+          <figure><img src="media/periodic-l6-extension.png" alt="Periodic L6 screening, convergence, phase-resolved distance, optimized length, and mechanism states"/><figcaption><b>EXTENDED DESIGN SPACE</b><span>Link screening, endpoint convergence, phase-resolved improvement, periodic L6 law, and ten mechanism states.</span></figcaption></figure>
+        </div>
       </section>
 
       <section className="chapter paper" id="s06">
         <div className="section-head"><p>06 — ARTICLE</p><h2>Manuscript and appendices</h2><span>全文、摘要与章节</span></div>
         <div className="abstract-grid">
-          <div><span>ABSTRACT · UPDATED MANUSCRIPT</span><p>Compact flapping mechanisms must transform a small set of periodic actuator motions into synchronized three-dimensional wrist and wingtip trajectories. Here we connect markerless flight reconstruction to the inverse synthesis of a three-joint, five-degree-of-freedom falcon-inspired mechanism. Sensitivity-selected periodic translations complement the rotary drive; paired trajectories are evaluated by equally weighted same-phase absolute-distance RMSE terms; and sensitivity-guided partitioning, regional CMA-ES, and SQP recover and refine feasible basins. A strict cold-start run recovered a full-cycle feasible design, and independent replay confirmed event-level metric reproducibility.</p></div>
-          <ol>{["Introduction", "Problem formulation & research framework", "Biological trajectory preprocessing", "Biologically inspired hybrid optimization", "Results", "Conclusions & outlook", "Replication of results", "Appendices: model & optimization domain"].map((x, i) => <li key={x}><b>{String(i + 1).padStart(2, "0")}</b>{x}</li>)}</ol>
+          <div><span>ABSTRACT · UPDATED MANUSCRIPT</span><p>Bird wings combine rotary joint motion with muscle-driven shortening to coordinate wrist and wingtip trajectories that differ in spatial extent, orientation, and local progression. Compact flapping mechanisms must approximate this distributed actuation with few periodic inputs, turning mechanism synthesis into a high-dimensional inverse problem constrained by full-cycle closure. Here we link confidence-aware markerless reconstruction of falcon flight to a three-joint, five-degree-of-freedom analytical mechanism. Sensitivity-guided partitioning localizes responsive regions, regional CMA-ES explores correlated feasible directions, and SQP refines selected basins. The replayable design captured the paired motion envelope, while periodic variation of an additional link further reduced the residual. The remaining mismatch was dominated by insufficient relative wrist–wingtip motion authority rather than phase discontinuity. The present evidence is kinematic and awaits structural, aerodynamic, and flight validation.</p></div>
+          <ol>{["Introduction", "Problem formulation & research framework", "Biological trajectory preprocessing", "Biologically inspired hybrid optimization", "Results, residual geometry & periodic L6", "Conclusions & outlook", "Replication of results", "Appendices: model & optimization domain"].map((x, i) => <li key={x}><b>{String(i + 1).padStart(2, "0")}</b>{x}</li>)}</ol>
         </div>
         <div className="paper-actions"><button onClick={() => setPaperOpen(!paperOpen)}>{paperOpen ? "Close embedded paper" : "Open paper in this window"}</button><a href="media/manuscript.pdf" download>Download PDF ↓</a></div>
         {paperOpen && <iframe className="pdf-frame" src="media/manuscript.pdf" title="Complete research paper" />}
@@ -249,7 +252,7 @@ export default function Home() {
 
       <section className="chapter reproducibility" id="s07">
         <div className="section-head"><p>07 — REPRODUCIBILITY</p><h2>Code and data availability</h2><span>代码、原始数据与验证记录</span></div>
-        <div className="repro-intro"><p>The archive below is tied to the verified strict-phase event at evaluation 1,074,004. It includes the analytical model, frozen target contract, final variables, trajectory replay, CMA-ES history, partition decisions, and accepted SQP calls.</p><a href="https://github.com/YihaoDong12/Falcon-Mechanism-Supplementary/tree/main/public/reproducibility" target="_blank">Browse all files on GitHub ↗</a></div>
+        <div className="repro-intro"><p>The archive separates the verified 54-dimensional event at evaluation 1,074,004 from the later periodic-L6 extension. It includes the frozen base contract and histories together with the extended model, winning event, link-screening comparison, phasewise replay, convergence record, and independent audit.</p><a href="https://github.com/YihaoDong12/Falcon-Mechanism-Supplementary/tree/main/public/reproducibility" target="_blank">Browse all files on GitHub ↗</a></div>
         <div className="download-grid">
           <DownloadItem href="reproducibility/model/fourbar3d_python.py" label="PYTHON · MODEL" title="Analytical closed-loop mechanism" meta="Three-dimensional sequential mechanism solver" />
           <DownloadItem href="reproducibility/model/fourbar_optimization.py" label="PYTHON · OPTIMIZATION" title="Optimization problem definition" meta="Bounds, feasibility contract, and paired objective" />
@@ -261,7 +264,16 @@ export default function Home() {
           <DownloadItem href="reproducibility/data/partition_splits.csv" label="CSV · PARTITIONS" title="Sensitivity split history" meta="Resolved regional split decisions" />
           <DownloadItem href="reproducibility/data/slsqp_calls.csv" label="CSV · LOCAL SEARCH" title="Accepted SQP calls" meta="Event-level local refinement history" />
         </div>
-        <p className="archive-note"><b>Evidence boundary.</b> Independent event replay reproduced all reported final metrics. The launcher did not complete checkpoint-level finalization, so this archive supports the selected event rather than claiming a finalized terminal checkpoint or universal global optimum.</p>
+        <div className="repro-subhead"><span>PERIODIC-L6 EXTENSION</span><h3>Code and source data for the enlarged design space</h3></div>
+        <div className="download-grid extension-downloads">
+          <DownloadItem href="reproducibility/l6_extension/model/fourbar_optimization.py" label="PYTHON · EXTENDED MODEL" title="Periodic-link optimization model" meta="L6 Fourier law, bounds, feasibility, and paired objective" />
+          <DownloadItem href="reproducibility/l6_extension/input/optimization_input.json" label="JSON · EXTENDED CONTRACT" title="Periodic-L6 input contract" meta="Frozen configuration used for link screening and reoptimization" />
+          <DownloadItem href="reproducibility/l6_extension/results/best_event.json" label="JSON · EXTENDED RESULT" title="Winning L6 event" meta="Replayed design vector and final metrics" />
+          <DownloadItem href="reproducibility/l6_extension/results/phasewise_replay.csv" label="CSV · PHASEWISE REPLAY" title="Extended trajectory replay" meta="Target, generated endpoints, and phase-resolved distances" />
+          <DownloadItem href="reproducibility/l6_extension/results/link_screening_comparison.csv" label="CSV · LINK SCREENING" title="Five-link comparison" meta="Equal-budget results supporting selection of L6" />
+          <DownloadItem href="reproducibility/l6_extension/results/independent_replay_audit.json" label="JSON · AUDIT" title="Independent extension audit" meta="Replay checks for the reported extended result" />
+        </div>
+        <p className="archive-note"><b>Evidence boundary.</b> Independent replay supports both the selected 54-dimensional event and the reported periodic-L6 extension. The base-run launcher did not complete checkpoint-level finalization, so the archive supports the selected event rather than claiming a finalized terminal checkpoint or universal global optimum. Structural, aerodynamic, and flight validation remain future work.</p>
       </section>
 
       <footer><div className="brand"><span>FW</span><b>FALCON / SYNTHESIS</b></div><p>Paper, videos, optimization evidence, code, and source data · Khalifa University · 2026</p><a href="#top">BACK TO TOP ↑</a></footer>
