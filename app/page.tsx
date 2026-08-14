@@ -136,8 +136,8 @@ function MediaCard({ title, kicker, src, poster, playbackRate = 1, children }: {
   );
 }
 
-function EvidenceVideo({ src, poster, label, caption }: { src: string; poster: string; label: string; caption: string }) {
-  return <figure className="evidence-figure"><div className="figure-media figure-video-frame"><video src={src} poster={poster} autoPlay muted loop playsInline controls preload="metadata" aria-label={caption} /></div><figcaption><b>{label}</b><span>{caption}</span></figcaption></figure>;
+function EvidenceFigure({ src, label, caption }: { src: string; label: string; caption: string }) {
+  return <figure className="evidence-figure"><div className="figure-media"><img src={src} alt={caption} /></div><figcaption><b>{label}</b><span>{caption}</span></figcaption></figure>;
 }
 
 function DownloadItem({ href, label, title, meta }: { href: string; label: string; title: string; meta: string }) {
@@ -203,7 +203,7 @@ export default function Home() {
 
       <section className="chapter" id="s03">
         <div className="section-head"><p>03 — ANALYTICAL MODEL</p><h2>Analytical mechanism and kinematics</h2><span>机构组成与多视角运动</span></div>
-        <EvidenceVideo src="media/web/mechanism-figure-v1.mp4" poster="media/web/mechanism-figure-v1.jpg" label="ANALYTICAL TOPOLOGY" caption="Animated overview of the three-joint, five-DOF mechanism and sequential closed-loop construction" />
+        <EvidenceFigure src="media/mechanism.png" label="ANALYTICAL TOPOLOGY" caption="Three-joint, five-DOF mechanism and sequential closed-loop construction" />
         <div className="mechanism-notes">
           <div><b>I</b><h3>Root drive</h3><p>Periodic shoulder-root input initiates the closed-loop transmission.</p></div>
           <div><b>II–VI</b><h3>Linked closure</h3><p>Sequential planar loops coordinate the elbow and wrist assemblies.</p></div>
@@ -213,7 +213,7 @@ export default function Home() {
 
       <section className="chapter optimization" id="s04">
         <div className="section-head"><p>04 — SEARCH PROCESS</p><h2>Optimization history and convergence</h2><span>目标函数、自变量与分区演化</span></div>
-        <div className="figure-media framework-frame figure-video-frame"><video src="media/web/optimization-framework-v1.mp4" poster="media/web/optimization-framework-v1.jpg" autoPlay muted loop playsInline controls preload="metadata" aria-label="Animated sensitivity-partitioned CMA-ES and SQP optimization framework" /></div>
+        <div className="figure-media framework-frame"><img src="media/optimization-framework.png" alt="Sensitivity-partitioned CMA-ES and SQP optimization framework" /></div>
         <div className="optimization-film">
           <video src="media/web/optimization-convergence.mp4" poster="media/web/optimization-convergence.jpg" autoPlay muted loop playsInline controls preload="metadata" />
           <div><span>60-SECOND ITERATION RECORD</span><h3>PCA exploration and CMA-ES convergence</h3><p>The animation separates tested candidates from accepted improvements and uses fixed PCA axes throughout the 54-dimensional search record.</p></div>
@@ -236,7 +236,7 @@ export default function Home() {
         </div>
         <div className="extension-result">
           <div className="extension-summary"><div><span>PERIODIC-L6 EXTENSION</span><h3>A short additional stroke reduces the coupled residual.</h3><p>Equal-budget screening identified L6 as the strongest of five tested single-link extensions. Joint reoptimization reduced the coupled RMSE from 45.49 to 39.32 mm while preserving continuous full-cycle assembly. The gain belongs to the enlarged design space rather than to L6 in isolation.</p></div><dl><div><dt>Coupled RMSE</dt><dd>39.32 mm</dd></div><div><dt>Reduction</dt><dd>13.56%</dd></div><div><dt>L6 range</dt><dd>0.85 mm</dd></div><div><dt>Selected links</dt><dd>1 of 5</dd></div></dl></div>
-          <figure><video src="media/web/periodic-l6-extension-v1.mp4" poster="media/web/periodic-l6-extension-v1.jpg" autoPlay muted loop playsInline controls preload="metadata" aria-label="Animated periodic L6 screening, convergence, phase-resolved distance, optimized length, and mechanism states"/><figcaption><b>EXTENDED DESIGN SPACE</b><span>Link screening, endpoint convergence, phase-resolved improvement, periodic L6 law, and ten mechanism states.</span></figcaption></figure>
+          <figure><img src="media/periodic-l6-extension.png" alt="Periodic L6 screening, convergence, phase-resolved distance, optimized length, and mechanism states"/><figcaption><b>EXTENDED DESIGN SPACE</b><span>Link screening, endpoint convergence, phase-resolved improvement, periodic L6 law, and ten mechanism states.</span></figcaption></figure>
         </div>
       </section>
 
