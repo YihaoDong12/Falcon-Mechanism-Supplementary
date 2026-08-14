@@ -50,7 +50,9 @@ test("server-renders the complete supplementary archive", async () => {
   assert.match(html, /39\.60/);
   assert.match(html, /39\.32 mm/);
   assert.match(html, /13\.56%/);
-  assert.match(html, /media\/periodic-l6-extension\.png/);
+  assert.match(html, /media\/web\/mechanism-figure-v1\.mp4/);
+  assert.match(html, /media\/web\/optimization-framework-v1\.mp4/);
+  assert.match(html, /media\/web\/periodic-l6-extension-v1\.mp4/);
   assert.match(html, /Rejected by full-cycle checks/);
   assert.doesNotMatch(html, /Selected evaluation/);
   assert.doesNotMatch(html, /Full-cycle feasible/);
@@ -89,7 +91,9 @@ test("ships the paper, scientific videos, and replay data", async () => {
     access(new URL("public/media/web/trajectory-side.mp4", templateRoot)),
     access(new URL("public/media/web/trajectory-top.mp4", templateRoot)),
     access(new URL("public/media/web/trajectory-oblique.mp4", templateRoot)),
-    access(new URL("public/media/periodic-l6-extension.png", templateRoot)),
+    access(new URL("public/media/web/mechanism-figure-v1.mp4", templateRoot)),
+    access(new URL("public/media/web/optimization-framework-v1.mp4", templateRoot)),
+    access(new URL("public/media/web/periodic-l6-extension-v1.mp4", templateRoot)),
     access(new URL("public/reproducibility/l6_extension/model/fourbar_optimization.py", templateRoot)),
     access(new URL("public/reproducibility/l6_extension/input/optimization_input.json", templateRoot)),
     access(new URL("public/reproducibility/l6_extension/results/phasewise_replay.csv", templateRoot)),
